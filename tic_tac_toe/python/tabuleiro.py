@@ -21,15 +21,18 @@ class Tabuleiro:
         ]
 
     def imprimir(self):
-        print self.tabuleiro
-        sys.stdout.write("Jogador %s, sua Escolha? " % self.jogador)
+        for t in self.tabuleiro:
+            print t
+        sys.stdout.write("Jogador {0}, sua Escolha? ".format(self.jogador))
 
     def preencher(self, x, y):
         if(self.matriz[x][y]): return False
         self.matriz[x][y] = self.jogador
         y = y * 2 + 2
-        x = x * 4 + 5
-        self.tabuleiro[y][x] = self.jogador
+        x = x * 4 + 11
+        bytes = bytearray(self.tabuleiro[y])
+        bytes[x] = self.jogador
+        self.tabuleiro[y] = str(bytes)
         if(self.jogador == 'X'):
             self.jogador = "O"
         else:
