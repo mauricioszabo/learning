@@ -19,6 +19,7 @@ class Tabuleiro:
             [None, None, None],
             [None, None, None]
         ]
+        self.__mensagem_final = ''
 
     def imprimir(self):
         for t in self.tabuleiro:
@@ -37,40 +38,38 @@ class Tabuleiro:
             self.jogador = "O"
         else:
             self.jogador = "X"
+        return True
 
     def jogo_acabou(self):
         False
 
-    #def jogo_acabou?
-    #  mensagem_final
-    #end
+    def jogo_acabou(self):
+        return self.mensagem_final() != ''
 
-    #def mensagem_final
-    #  @mensagem ||= proc do
-    #    h = horizontais_ou_verticais_iguais
-    #    h ||= diagonais_iguais
-    #    if h
-    #      "#{h} Venceu!"
-    #    end
-    #  end.call
-    #end
+    def mensagem_final(self):
+        if(self.__mensagem_final == ''):
+            h = self.horizontais_ou_verticais_iguais()
+            h = h or self.diagonais_iguais()
+            if(h):
+                self.__mensagem_final = "{0} Venceu!".format(h)
+        return self.__mensagem_final
 
-    #def horizontais_ou_verticais_iguais
-    #  3.times do |i|
-    #    next unless @matriz[i].all?
-    #    elementos = @matriz[i].uniq
-    #    return elementos.first if elementos.size == 1
-    #  end
-    #  matriz = @matriz.transpose
-    #  3.times do |i|
-    #    next unless matriz[i].all?
-    #    elementos = matriz[i].uniq
-    #    return elementos.first if elementos.size == 1
-    #  end
-    #  return nil
-    #end
+    def horizontais_ou_verticais_iguais(self):
+        for i in range(3):
+            if(not all(self.matriz[i])): next
+            elementos = list(set(self.matriz[i]))
+            if(len(elementos) == 1):
+                return elementos[0]
+      
+        matriz = zip(*self.matriz)
+        for i in range(3):
+            if(not all(matriz[i])): next
+            elementos = list(set(matriz[i]))
+            if(len(elementos) == 1):
+                return elementos[0]
+        return None
 
-    #def diagonais_iguais
-    #  return @matriz[0][0] if @matriz[0][0] == @matriz[1][1] && @matriz[1][1] == @matriz[2][2]
-    #  return @matriz[0][2] if @matriz[0][2] == @matriz[1][1] && @matriz[1][1] == @matriz[2][0]
-    #end
+    def diagonais_iguais(self):
+        matriz = self.matriz
+        if(matriz[0][0] == matriz[1][1] == matriz[2][2]): return matriz[0][0]
+        if(matriz[0][2] == matriz[1][1] == matriz[2][0]): return matriz[0][2]

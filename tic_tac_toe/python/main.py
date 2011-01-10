@@ -12,7 +12,7 @@ class Main:
             self.tabuleiro.imprimir()
             self.processar_jogada()
 
-        self.tabuleiro.imprimir(O)
+        self.tabuleiro.imprimir()
         print
         print
         print self.tabuleiro.mensagem_final()
