@@ -18,9 +18,8 @@ Tabuleiro::Tabuleiro() {
 }
 
 void Tabuleiro::imprimir() {
-    int c;
     cout << endl;
-    for(c = 0; c < 6; c++) {
+    for(int c = 0; c < 6; c++) {
         cout << tabuleiro[c] << endl;
     }
     cout << "\nJogador " << jogador << ", sua escolha? ";
@@ -70,9 +69,8 @@ string Tabuleiro::horizontais_ou_verticais_iguais() {
 }
 
 string Tabuleiro::iguais(vector<string> matriz) {
-    int i;
     string elemento = matriz[0];
-    for(i = 1; i < 3; i++) {
+    for(int i = 1; i < 3; i++) {
         if(elemento != matriz[i]) return "";
     }
     return elemento;
