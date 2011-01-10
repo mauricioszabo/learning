@@ -38,6 +38,8 @@ class Tabuleiro
       h ||= diagonais_iguais
       if h
         "#{h} Venceu!"
+      elsif todos_preenchidos?
+        "Deu velha!"
       end
     end.call
   end
@@ -60,5 +62,9 @@ class Tabuleiro
   def diagonais_iguais
     return @matriz[0][0] if @matriz[0][0] == @matriz[1][1] && @matriz[1][1] == @matriz[2][2]
     return @matriz[0][2] if @matriz[0][2] == @matriz[1][1] && @matriz[1][1] == @matriz[2][0]
+  end
+
+  def todos_preenchidos?
+    @matriz.all? { |e| e.all? }
   end
 end

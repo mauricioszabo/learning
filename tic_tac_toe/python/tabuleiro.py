@@ -41,9 +41,6 @@ class Tabuleiro:
         return True
 
     def jogo_acabou(self):
-        False
-
-    def jogo_acabou(self):
         return self.mensagem_final() != ''
 
     def mensagem_final(self):
@@ -52,6 +49,8 @@ class Tabuleiro:
             h = h or self.diagonais_iguais()
             if(h):
                 self.__mensagem_final = "{0} Venceu!".format(h)
+            elif(self.todos_preenchidos()):
+                self.__mensagem_final = 'Deu velha!'
         return self.__mensagem_final
 
     def horizontais_ou_verticais_iguais(self):
@@ -73,3 +72,9 @@ class Tabuleiro:
         matriz = self.matriz
         if(matriz[0][0] == matriz[1][1] == matriz[2][2]): return matriz[0][0]
         if(matriz[0][2] == matriz[1][1] == matriz[2][0]): return matriz[0][2]
+
+    def todos_preenchidos(self):
+        for m1 in self.matriz:
+            for e in m1:
+                if(not e): return False
+        return True;
