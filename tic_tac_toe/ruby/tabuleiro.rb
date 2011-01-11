@@ -45,17 +45,14 @@ class Tabuleiro
   end
 
   def horizontais_ou_verticais_iguais
-    3.times do |i|
-      next unless @matriz[i].all?
-      elementos = @matriz[i].uniq
+    comp = proc do |m|
+      next unless m.all?
+      elementos = m.uniq
       return elementos.first if elementos.size == 1
     end
-    matriz = @matriz.transpose
-    3.times do |i|
-      next unless matriz[i].all?
-      elementos = matriz[i].uniq
-      return elementos.first if elementos.size == 1
-    end
+
+    @matriz.each &comp
+    @matriz.transpose.each &comp
     return nil
   end
 
