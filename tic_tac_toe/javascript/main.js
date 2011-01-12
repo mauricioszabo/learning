@@ -8,11 +8,17 @@ window.onload = function() {
         tabuleiro: criarTabuleiro(),
 
         jogar: function() {
-            if(!main.tabuleiro.jogo_acabou()) {
-                get('output').innerHTML = '';
-                main.processar_jogada();
-                main.exibir();
-            } else {
+            get('output').innerHTML = '';
+            this.processar_jogada();
+            this.exibir();
+            if(this.tabuleiro.jogo_acabou()) {
+                get('output').innerHTML += "\n"
+                get('output').innerHTML += "\n"
+                get('output').innerHTML += this.tabuleiro.mensagem_final();
+                get('form').onsubmit = function() {
+                    alert("O jogo acabou!")
+                    return false;
+                };
             }
             return false;
         },
@@ -29,17 +35,25 @@ window.onload = function() {
             }
             x = jogada[1].charCodeAt(0) - 65;
             y = jogada[2] - 1;
-            if(!main.tabuleiro.preencher(x, y)) {
+            if(!this.tabuleiro.preencher(x, y)) {
                 get('output').innerHTML += "Quadrado já está preenchido!\n";
             }
         },
         
         exibir: function() {
-            var retorno = main.tabuleiro.imprimir();
+            var retorno = this.tabuleiro.imprimir();
             get('output').innerHTML += retorno;
         }
     };
 
-    get('form').onsubmit = main.jogar;
+    
+    get('form').onsubmit = function() { 
+        try { 
+            main.jogar();
+        } catch(e) {
+            alert(e);
+        }
+            return false;
+    };
     main.exibir();
 };
