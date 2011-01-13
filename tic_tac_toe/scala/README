@@ -1,0 +1,36 @@
+Scala
+
+A primeira linguagem que eu resolvi fazer o jogo sem conhecê-la direito.
+
+Na verdade, Scala me impressionou. Sendo uma linguagem que roda sobre a
+JVM, estática, com um monte de gente se impressionando com ela, imaginei
+que ela seria horrível de se programar (rs).
+
+A inflexão de tipagem (var a = "") é excelente, embora eu acredite que
+podia ser um pouco melhor (por exemplo, quando se coloca um "return" em
+um método, você precisa explicitamente definir o tipo).
+
+No início, achei que pareceria muito com Java, mas ficou bem diferente.
+Na prática, parece mais com Ruby do que com Java, embora certas coisas 
+sejam BEM diferentes, até por Scala ser uma linguagem estática. Talvez, seja
+mais correto dizer que na declaração de classes e métodos, no aspecto
+"funcional", Scala e Ruby são muito parecidos. Já a sintaxe lembra um
+pouco mais Java, especialmente nos "if", "while", etc.
+
+Certas construções de Scala ainda são muito nebulosas para mim 
+(por exemplo, o lance dos parênteses em  métodos que eu não sei quando 
+posso omitir e quando não), e tem coisas que a linguagem ainda pode melhorar 
+muito (principalmente nas iterações: falta um "any?", um "all?", e falta 
+também um "each_with_index" que eu realmente senti muita falta (assim como 
+um "splat operator")). Minha preocupação é só se ela vai se prender muito
+às bibliotecas Java e evitar versões mais "scala-friendly", mas isso só
+o tempo dirá.
+
+Os pontos que eu mais gostei foram:
+
+  tabuleiro foreach println //Embora eu não tenha entendido direito ainda
+  private def todosPreenchidos = !matriz.exists(e => e.exists( e2 => e2 == null ) )
+  val regex = "^([ABC])([123])$".r.findAllIn(jogada) //Embora o suporte à regex possa melhorar
+
+E, principalmente, o código presente em horizontaisOuVerticaisIguais, que 
+lembra muito o "proc" do Ruby e pode ser muito bem usado para evitar duplicações.

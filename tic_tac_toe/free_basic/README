@@ -1,0 +1,23 @@
+Basic / FreeBASIC
+
+Embora a estrutura da linguagem seja muito semelhante, Basic mudou muito desde
+o Basic propriamente dito, até o QBasic, QuickBasic, e VisualBasic. O FreeBASIC
+não é exceção à regra, portanto é provável que esse código não rodará no QBasic.
+
+Enfim, Basic foi a primeira linguagem que aprendi. Eu lembro que eu adorava essa
+porcaria (rs), mas agora, depois de trabalhar com linguagens mais estruturadas,
+é que escrever um código como esse mostra seus problemas:
+
+Ausência de TRUE, FALSE, linguagem muito "verbosa" (precisa escrever demais para
+coisas simples), "Magia Negra" (o comando "MID" é um exemplo bem claro, você não
+consegue, usando construções da linguagem, definir um comando que se comporta
+exatamente como o MID), orientação completamente procedural (ainda que o dialeto
+do FreeBASIC permite TYPE com Arrays, coisa que não dava pra ser feito no 
+QuickBasic).
+
+Nesse código, também, acabei colocando tudo no mesmo arquivo (main.bas), até 
+porque não conheço a forma correta de se fazer isso em BASIC (se é que há 
+alguma), e quando tentei fazer isso no QuickBasic ganhei alguns erros porque
+o TYPE deveria estar definido em vários lugares.
+
+Essa versão me ensinou uma coisa interessante: não ter saudades de BASIC...

@@ -1,12 +1,13 @@
 class Tabuleiro {
-    val tabuleiro = Array(
-        "     A   B   C ",
-        "  1    |   |   ",
-        "    ---+---+---",
-        "  2    |   |   ",
-        "    ---+---+---",
-        "  3    |   |   "
-    )
+    val TABULEIRO = """
+       A   B   C 
+    1    |   |   
+      ---+---+---
+    2    |   |   
+      ---+---+---
+    3    |   |   
+    """
+    val tabuleiro = TABULEIRO.split("\n")
     
     val matriz = Array( new Array[String](3), new Array[String](3), new Array[String](3) )
     var jogador = "X"
@@ -20,8 +21,8 @@ class Tabuleiro {
     def preencher(x:Int, y:Int): Boolean = {
         if(matriz(x)(y) != null) return false
         matriz(x)(y) = jogador
-        val y1 = y * 2 + 1;
-        val x1 = x * 4 + 5;
+        val y1 = y * 2 + 2;
+        val x1 = x * 4 + 7;
         val s = tabuleiro(y1)
         tabuleiro(y1) = s.take(x1) + jogador + s.drop(x1 + 1)
         jogador = if(jogador == "X") "O" else "X"
