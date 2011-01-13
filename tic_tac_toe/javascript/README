@@ -1,0 +1,23 @@
+Javascript
+
+No início, pensei em simplesmente copiar o código de Lua e alterá-lo.
+Porém, nenhuma implementação de Javascript suporta ler do stdin, e já
+que eu precisaria acrescentar uma página, então que o código fosse feito
+mais no jeito de Javascript.
+
+Para essa abordagem, usei a idéia de "função construtora" ao invés de usar
+o modo "pseudoclássico" (conforme define Douglas Crockford):
+
+  var Tabuleiro = function() { }...
+  var t = new Tabuleiro()
+
+A coisa que mais deu trabalho foi o uso inconsistente do "this". Se eu fizer,
+por exemplo:
+
+  get('form').onsubmit = main.jogar
+
+Dentro do "main.jogar" e de qualquer função chamada por ele, "this" apontará
+para o objeto "form" e não para o "main", como deveria. Outra coisa difícil 
+foi lembrar de usar sempre "===" ao invés do equivalente "==", para evitar
+comparações que retornar coisas estranhas. Fora isso, em linhas gerais, o
+código é muito semelhante à versão em C ou em Lua.

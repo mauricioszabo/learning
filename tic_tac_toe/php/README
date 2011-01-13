@@ -1,0 +1,26 @@
+PHP
+
+Vamos ser sinceros: orientação a objetos em PHP é um saco. Consegue ser
+pior que Python, porque precisa do "$this" para fazer qualquer coisa, e
+ainda por cima só suporta a notação de seta (->) ao invés do ponto (.).
+
+Também, não há muito o que falar sobre a versão em PHP. Apenas que se 
+parece muito com a versão em C/C++, Java e Javascript, e assim como
+Python tem suas loucuras tipo o método count().
+
+A vantagem é que ele obedece um pouco mais o "princípio da menor surpresa",
+todas as coisas funcionam mais ou menos como se espera que elas funcionem,
+e o fato das strings serem mutáveis tal como Ruby/C/C++. Dos pontos 
+negativos, a necessidade de ";" no final de cada linha, os fatores já citados
+anteriormente, e a biblioteca padrão de PHP, que vale um comentário:
+
+A maior parte da biblioteca padrão ou é compilada junto com a linguagem, ou
+simplesmente não está disponível. Não é como Ruby, aonde você precisa de um
+"require 'algo'" para adicionar aquela funcionalidade em seu programa, em PHP
+na verdade tudo o que foi compilado junto com o PHP está automaticamente 
+disponível. Isso tem seus lados bons e ruins, que ficam a cargo de qualquer um.
+O problema maior, ao meu ver, é que a biblioteca padrão é um apanhado de
+códigos diferentes, então alguns métodos de tratamento de string começam com
+"str_", outros não, alguns são em camelCase, outros em snake_case, e há
+bibliotecas inteiras orientadas a objeto, enquanto a grande maioria é
+procedural.

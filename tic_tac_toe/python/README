@@ -1,0 +1,19 @@
+Python
+
+Python foi muito parecido com Ruby. Muito mesmo. É como pegar a versão de
+Ruby, acrescentar "self" em cada definição de método, substituir "@" por
+"self.", e dar uns ajustes-finos e está tudo certo.
+
+Coisas que eu não gosto em Python são muitas. Não gosto dos "métodos mágicos"
+tipo "zip", "len", "bytearray", que pra mim deveriam ser métodos. O "self"
+explícito dá nos nervos, e os "iterators" eu juro que não consegui entender
+a documentação do Python para ver como eles funcionam (talvez o "todos_preenchidos"
+e o "horizontais_ou_verticais_iguais" ficariam mais simples usando os iterators).
+
+Gosto da construção:
+
+  if(matriz[0][0] == matriz[1][1] == matriz[2][2]): return matriz[0][0]
+
+Embora eu ache que isso é inconsistente com a linguagem (== retorna um boleano, mas 
+quando encadeado funciona como "and"?), e eu particularmente não gosto de inconsistencias
+(fica aparente no código em FreeBASIC).

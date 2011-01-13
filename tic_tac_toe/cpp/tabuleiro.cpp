@@ -55,13 +55,13 @@ string Tabuleiro::mensagem_final() {
 
 string Tabuleiro::horizontais_ou_verticais_iguais() {
     string elemento;
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < matriz.size(); i++) {
         elemento = iguais(matriz[i]);
         if(elemento != "") return elemento;
     }
     
     GradeVelha transposta = transpose(matriz);
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < matriz.size(); i++) {
         elemento = iguais(transposta[i]);
         if(elemento != "") return elemento;
     }
@@ -70,7 +70,7 @@ string Tabuleiro::horizontais_ou_verticais_iguais() {
 
 string Tabuleiro::iguais(vector<string> matriz) {
     string elemento = matriz[0];
-    for(int i = 1; i < 3; i++) {
+    for(int i = 1; i < matriz.size(); i++) {
         if(elemento != matriz[i]) return "";
     }
     return elemento;
@@ -79,11 +79,11 @@ string Tabuleiro::iguais(vector<string> matriz) {
 GradeVelha Tabuleiro::transpose(GradeVelha original) {
     GradeVelha transposta;
     vector <string> m;
-    for(int i = 0; i < 3; i++) m.push_back("");
-    for(int i = 0; i < 3; i++) transposta.push_back(m);
+    for(int i = 0; i < original.size(); i++) m.push_back("");
+    for(int i = 0; i < original.size(); i++) transposta.push_back(m);
 
-    for(int x = 0; x < 3; x++) {
-        for(int y = 0; y < 3; y++) {
+    for(int x = 0; x < original.size(); x++) {
+        for(int y = 0; y < original[x].size(); y++) {
             transposta[y][x] = original[x][y];
         }
     }
@@ -97,8 +97,8 @@ string Tabuleiro::diagonais_iguais() {
 }
 
 bool Tabuleiro::todos_preenchidos() {
-    for(int x = 0; x < 3; x++) {
-        for(int y = 0; y < 3; y++) {
+    for(int x = 0; x < matriz.size(); x++) {
+        for(int y = 0; y < matriz[x].size(); y++) {
             if(matriz[x][y] == "") return false;
         }
     }

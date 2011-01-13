@@ -1,0 +1,25 @@
+Java
+
+É impressionante que, mesmo depois de mais de 15 anos de Java, ela se pareça
+ainda tanto com C/C++. Fazer essa versão em Java foi quase como copiar o 
+código dos arquivos .cpp para dentro dos arquivos .h, renomeá-los para .java
+e alterar as coisas que precisavam ser alteradas.
+
+Em Java, eu poderia usar List, ArrayList ou qualquer coisa que o valha para
+fazer um Array, mas aí eu também teria que usar "get" para acessar os 
+membros, e achei que não valia a pena. Tentei usar Regexp também, mas o
+código era tão burocrático pra fazer apenas o "match" que acabei desistindo
+e usando a versão em C/C++.
+
+Coisas que me impressionaram foi como a linguagem consegue ser burocrática
+completamente à toa. No código diagonaisIguais precisei fazer um "catch"
+completamente desnecessário, além de ser obrigado a usar "equals" para
+comparar Strings (um caso evidente aonde a ausência de sobreposição de
+operadores realmente faz falta). O método "preencher" foi um verdadeiro
+balaio, com conversões de char para String e de volta para char, e eu
+acredito (ou quero acreditar) que há realmente uma forma melhor de se fazer,
+e que meu desconhecimento de Java que impede de ver a melhor forma.
+
+Java tem suas "mágicas" também, tal como a propriedade "length" das
+arrays que é uma variável, mas se comporta como um método (da mesma
+forma como o próprio array é um primitivo mas se comporta como classe).

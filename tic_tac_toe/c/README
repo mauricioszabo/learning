@@ -1,0 +1,21 @@
+C
+
+Ah, C... nada de orientação a objetos, structs, etc...
+
+C não é uma linguagem difícil, na verdade. A parte mais difícil é sair
+da orientação a objetos e ir pro procedural, ficar passando a struct
+Tabuleiro pra cima e pra baixo, e assim por diante.
+
+Tratamento de arrays fica esquisito porque não há uma forma de descobrir
+o número máximo de elementos do array, e não há exception ou qualquer erro
+se você tentar acessar um índice fora do limite. Além disso, funções como
+"transpose" não podem RETORNAR um novo array, porque isso envolveria alocação
+de memória e possível desalocação.
+
+Fora isso, o tratamento de strings que é precário, mas pelo menos permite-me
+fazer coisas tipo: 
+
+  tabuleiro->tabuleiro[y][x] = tabuleiro->jogador;
+
+Que dão trabalho descomunal em linguagens aonde o String é imutável (como
+qualquer linguagem fora Ruby, C/C++).

@@ -54,13 +54,13 @@ class Tabuleiro {
 
     private String horizontaisOuVerticaisIguais() {
         String elemento;
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < matriz.length; i++) {
             elemento = iguais(matriz[i]);
             if(elemento != null) return elemento;
         }
         
         String [][]transposta = transpose(matriz);
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < transposta.length; i++) {
             elemento = iguais(transposta[i]);
             if(elemento != null) return elemento;
         }
@@ -78,8 +78,8 @@ class Tabuleiro {
 
     private String[][] transpose(String[][] original) {
         String[][] transposta = new String[3][3];
-        for(int x = 0; x < 3; x++) {
-            for(int y = 0; y < 3; y++) {
+        for(int x = 0; x < matriz.length; x++) {
+            for(int y = 0; y < matriz[x].length; y++) {
                 transposta[y][x] = original[x][y];
             }
         }
@@ -96,8 +96,8 @@ class Tabuleiro {
     }
 
     private boolean todosPreenchidos() {
-        for(int x = 0; x < 3; x++) {
-            for(int y = 0; y < 3; y++) {
+        for(int x = 0; x < matriz.length; x++) {
+            for(int y = 0; y < matriz.length; y++) {
                 if(matriz[x][y] == null) return false;
             }
         }

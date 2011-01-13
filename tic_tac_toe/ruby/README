@@ -1,0 +1,14 @@
+Ruby: A linguagem que eu mais uso
+
+Por este motivo, provavelmente a maioria dos outros códigos será muito 
+semelhante à essa versão, de Ruby.
+
+A versão de Ruby é muito semelhante à versão de Python, exatamente porque
+as duas foram feitas em momentos muito próximos. Na minha opinião, a versão
+Ruby é mais auto-explicativa, com construções como:
+
+  @matriz.transpose.each &comp
+
+E também, para verificar se todos os campos da matriz estão preenchidos
+
+  @matriz.all? { |e| e.all? }

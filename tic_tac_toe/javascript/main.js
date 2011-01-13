@@ -47,8 +47,8 @@ window.onload = function() {
     };
 
     
-    get('form').onsubmit = function() { 
-        try { 
+    get('form').onsubmit = function() {
+        try {
             main.jogar();
         } catch(e) {
             alert(e);

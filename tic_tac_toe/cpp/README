@@ -1,0 +1,33 @@
+C++
+
+Poucas são as verdadeiras vantagens de C++ sobre C, além da orientação
+a objetos e da STD (Standard Template Library) e suporte à strings mesmo
+(que, por algum motivo bizarro, poucos usam, tanto a STD quanto as strings.
+Enfim...).
+
+O código de transposição ficou maior, porque é necessário popular o "vector"
+do jogo da velha, mas em linhas gerais, ele funciona como se espera (recebe um
+vetor, e retorna-o transposto). A idéia é que, em C++, as coisas funcionam 
+mais como se espera delas (uma string pode ter seu valor alterado somando-a
+com outras strings, vetores tem métodos, há um lugar certo para "alocar 
+memória" e um certo para "desalocar" (construtores e destrutores), enfim.
+
+E, bom, a presença de "null", "true" e "false" fazem uma pequena diferença,
+também. Mas, apesar de tudo, eu não gosto do "cout" e do "cin", mas esses
+são apenas detalhes de implementação bem supérfluos.
+
+O que eu acho impressionante em C++, que eu não acho que nenhuma outra
+linguagem possui, é que a atribuição ("=") é um operador também. Então,
+quando você atribui um valor a uma string
+
+  string a = "Uma String";
+  a = "Outra String";
+
+na prática, na segunda linha, o objeto "a" é a mesma string, com um valor
+diferente. Isso é interessante porque não há o risco de se fazer, como em Ruby:
+
+  a = "Uma String";
+  b = a;
+  b = "Outra String"; //Ao contrário de Ruby, isso não altera o valor de "a"
+
+Isso porque, na verdade, "a" e "b" são objetos diferentes.

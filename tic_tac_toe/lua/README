@@ -1,0 +1,21 @@
+Lua
+
+Lua é uma linguagem realmente estranha. Nunca tinha trabalhado com códigos
+mais complexos do que uma ou outra customização para um sistema qualquer, e
+nesse projeto a sintaxe da linguagem começou a pesar.
+
+Primeiro, a documentação. É quase impossível achar material atualizado sobre
+Lua (muitos dos documentos ainda cobrem a versão 4.0 ou anterior), e além 
+disso a documentação oficial peca em muitos pontos (foi difícil, por exemplo,
+entender o "require" de Lua).
+
+Em Lua, também, os arrays começam em "1", o que deu uma pequena encrenca
+mental comigo. Também, o uso de ":" para chamar métodos, e a conversão
+automática de string pra inteiro que não funcionou direito (precisando
+do work-around "y = y - 0") foram coisas que complicaram, até porque Lua
+diferencia "a['1'] = 'X'" de "a[1] = 'X'", como esperado, o que gerou um
+erro na hora de calcular quem ganhou no jogo que foi difícil de descobrir.
+
+Lua me lembra Javascript, centenas de forma de fazer a mesma coisa, e
+aparentemente nem mesmo os mantenedores tem certeza de qual a melhor forma 
+ou sequer recomendam uma abordagem em relação à outra.
