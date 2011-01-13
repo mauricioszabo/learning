@@ -55,13 +55,16 @@ class Tabuleiro
     @matriz.transpose.each &comp
     return nil
   end
+  private :horizontais_ou_verticais_iguais
 
   def diagonais_iguais
     return @matriz[0][0] if @matriz[0][0] == @matriz[1][1] && @matriz[1][1] == @matriz[2][2]
     return @matriz[0][2] if @matriz[0][2] == @matriz[1][1] && @matriz[1][1] == @matriz[2][0]
   end
+  private :diagonais_iguais
 
   def todos_preenchidos?
     @matriz.all? { |e| e.all? }
   end
+  private :todos_preenchidos?
 end
