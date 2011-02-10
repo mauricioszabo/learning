@@ -1,5 +1,11 @@
 Projeto para aprender novas linguagens de programação. A idéia é fazer 
 um código e reproduzí-lo em várias linguagens semelhantes.
 
+== Tetris ==
+Na prática mesmo, esse foi o primeiro código que eu fiz em Ruby ou Python na vida.
+Testei-os para ver como era escrever um código como um jogo de tetris, e o resultado
+foi bem satisfatório ao meu ver. Todos os projetos usam a biblioteca SDL (python usa
+pygame, ruby usa rubysdl)
+
 == TIC-TAC-TOE ==
 O famoso "Jogo da Velha", em várias linguagens.
