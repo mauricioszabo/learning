@@ -38,7 +38,8 @@ jogo_acabou() {
 mensagem_final() {
     if [ ! $m_mensagem_final ]; then
         h=$(horizontais_ou_verticais_iguais)
-        if [ $h ]; then
+        if [ "$h" == "" ]; then h=$(diagonais_iguais); fi
+        if [ "$h" != "" ]; then 
             m_mensagem_final="$h Venceu!"
         fi
     fi
@@ -49,6 +50,14 @@ mensagem_final() {
 horizontais_ou_verticais_iguais() {
     for i in {0..2}; do
         elemento=$(iguais $i) 
+        if [ "$elemento" != "" ]; then 
+            echo $elemento
+            return
+        fi
+    done
+
+    for i in {0..2}; do
+        elemento=$(iguais $i 1) 
         if [ "$elemento" != "" ]; then
             echo $elemento
             return
@@ -58,12 +67,36 @@ horizontais_ou_verticais_iguais() {
 
 iguais() {
     x=$1
+    reverse=$2
     elemento=${matriz[$x0]}
     for y in {1..2}; do
-        if [ "${matriz[$x$y]}" != "$elemento" ]; then 
+        if [ $reverse ]; then
+            var=${matriz[$y$x]}
+        else
+            var=${matriz[$x$y]}
+        fi
+
+        if [ "$var" != "$elemento" ]; then 
             echo ""
-            return 0
+            return
         fi
     done
     echo $elemento
 }
+
+diagonais_iguais() {
+    if [ ! ${matriz[11]} ]; then return; fi
+    [ "${matriz[00]}" == "${matriz[11]}" ] && [ "${matriz[22]}" == "${matriz[11]}" ] && echo "${matriz[00]}"
+    [ "${matriz[02]}" == "${matriz[11]}" ] && [ "${matriz[20]}" == "${matriz[11]}" ] && echo "${matriz[02]}"
+}
+
+#int todos_preenchidos(Tabuleiro *tabuleiro) {
+#    int x, y;
+#    for(x = 0; x < 3; x++) {
+#        for(y = 0; y < 3; y++) {
+#            if(!tabuleiro->matriz[x][y]) return FALSE;
+#        }
+#    }
+#    return TRUE;
+#}
+
