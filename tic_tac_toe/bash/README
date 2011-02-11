@@ -1,0 +1,26 @@
+Shell Script - BASH
+
+Fiz poucas coisas em Shell Script na minha vida, e nem lembrava direito como
+programar nessa "linguagem".
+
+Foi uma experiência interessante, não fosse a falta de arrays de mais de uma
+dimensão. A linguagem em si não é tão complicada, ela é apenas estrita demais
+(nada de espaços entre o <nome_variavel>, o "=", para atribuição), e às vezes
+é "relaxada" demais (se você não usar aspas para setar um valor de uma variável,
+ela funciona normalmente). Mas, há algo complicado: IF.
+
+O IF é muito difícil de implementar. Eu mesmo não faço idéia de como eu teria que
+fazer um if tipo: if(a == 10 || a == 20), ou construções mais detalhadas. Fora
+isso, o uso de colchetes que devem ter espaços antes e depois deles, algumas
+comparações que retornam erros tipo:
+
+  if [ $variavel == "X" ] #Erro.
+  if [ "$variavel" == "X" ] #Correto.
+
+Funções que não retornam qualquer coisa diferente de inteiros, e mesmo quando
+retornam precisam ser chamadas e depois deve ser analisado o retorno da variável
+$?, e assim por diante.
+
+No geral, uma experiência interessante. E o código ficou relativamente limpo, 
+pequeno e simples, algo que eu realmente não esperava. Mas não, não faço idéia
+(e nem quero pensar nisso) em como seria fazer o código de transposição de matrizes...
