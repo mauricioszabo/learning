@@ -9,3 +9,11 @@ pygame, ruby usa rubysdl)
 
 == TIC-TAC-TOE ==
 O famoso "Jogo da Velha", em várias linguagens.
+
+== Swing Hello Worlds ==
+Um "Hello World", em Swing (biblioteca Java de gráficos) para todas as linguagens que
+rodam sobre a JVM.
+
+== TDD ==
+Test-Driven Development. Baseado no "money example" do livro Test-Driven Development
+by Example, do Kent Beck.
