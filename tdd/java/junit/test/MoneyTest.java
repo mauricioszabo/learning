@@ -17,8 +17,8 @@ public class MoneyTest {
 
     @Test public void addDollarsToDollars() throws InvalidMoneyOperation {
         assertThat(oneDollar.add(oneDollar), is(new Money(2, "dollar")));
-        assertTrue((oneDollar.add(oneDollar)).lt(new Money(3, "dollar")));
-        assertTrue((oneDollar.add(oneDollar)).lte(new Money(2, "dollar")));
+        assertTrue(oneDollar.add(oneDollar).lt(new Money(3, "dollar")));
+        assertTrue(oneDollar.add(oneDollar).lte(new Money(2, "dollar")));
     }
 
     @Test public void subtractDollarsToDollars() throws InvalidMoneyOperation {
