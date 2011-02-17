@@ -41,4 +41,27 @@ describe Money do
     @bank.should_receive(:apply).with(@one_dollar)
     @one_dollar.apply_on @bank
   end
+
+  it 'greater than 20,000 should be expensive' do
+    thousand_bucks = Money.new(30_000, :dollar)
+    thousand_bucks.should be_expensive
+  end
+
+  it 'should identify the currency of the money' do
+    @two_francs.should have_currency(:franc)
+  end
+
+  Spec::Matchers.define :be_expensive do
+    match do |money|
+      money.value > 20_000
+    end
+  end
+
+  Spec::Matchers.define :have_currency do |currency|
+    match do |money|
+      money.name == currency
+    end
+
+    failure_messages_for_should { |m| "Expected money to be of currency #{currency}" }
+  end
 end

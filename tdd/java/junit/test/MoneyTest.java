@@ -1,6 +1,7 @@
 package test;
 
 import org.junit.*;
+import org.hamcrest.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import lib.*;
@@ -45,5 +46,43 @@ public class MoneyTest {
         Bank bank = mock(Bank.class);
         oneDollar.applyOn(bank);
         verify(bank).apply(oneDollar);
+    }
+    
+    @Test public void greaterThan20000ShouldBeExpensive() {
+        Money thousandBucks = new Money(30000, "dollar");
+        assertThat(thousandBucks, isExpensive());
+    }
+
+    private Matcher<Money> isExpensive() {
+        return new BeExpensive<Money>();
+    }
+
+    @Test public void identifyTheCurrencyOfTheMoney() {
+        assertThat(twoFrancs, haveCurrency("franc"));
+    }
+
+    private Matcher<Money> haveCurrency(String curr) {
+        return new HaveCurrency<Money>(curr);
+    }
+
+    class BeExpensive<T> extends BaseMatcher<T> {
+        public boolean matches(Object item) {
+            Money money = (Money) item;
+            return money.getValue() > 20000;
+        }
+        
+        public void describeTo(Description d) { d.appendText("to be expensive"); }
+    }
+
+    class HaveCurrency<T> extends BaseMatcher<T> {
+        private String currency;
+
+        public HaveCurrency(String c) { currency = c; }
+        public void describeTo(Description d) { d.appendText("to be of currency " + currency); }
+        
+        public boolean matches(Object item) {
+            Money money = (Money) item;
+            return money.getName().equals(currency);
+        }
     }
 }

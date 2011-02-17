@@ -1,5 +1,6 @@
 class Money
   include Comparable
+  attr_accessor :name, :value
 
   def initialize(value, name)
     @value, @name = value, name
@@ -40,9 +41,6 @@ class Money
   def inspect
     "$: #@value #@name"
   end
-
-  protected
-  attr_accessor :name, :value
 end
 
 class InvalidMoneyOperation < StandardError

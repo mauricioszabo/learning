@@ -4,8 +4,8 @@ public class Money {
     private int value;
     private String name;
 
-    protected int getValue() { return value; }
-    protected String getName() { return name; }
+    public int getValue() { return value; }
+    public String getName() { return name; }
 
     public Money(int value, String name) {
         this.name = name;
