@@ -26,13 +26,13 @@ class TestMoney < Test::Unit::TestCase
     assert !(@one_dollar <= @two_francs)
   end
 
-  def test_cant_add_dolars_and_francs
+  def test_cant_add_dollars_and_francs
     assert_raise(InvalidMoneyOperation) do
       @one_dollar + @two_francs
     end
   end
 
-  def test_cant_subtract_dolars_and_francs
+  def test_cant_subtract_dollars_and_francs
     assert_raise(InvalidMoneyOperation) do
       @one_dollar - @two_francs
     end

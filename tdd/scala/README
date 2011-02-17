@@ -1,0 +1,8 @@
+Para Scala, é possível utilizar a biblioteca scalatest, disponível em:
+
+http://www.scalatest.org/
+
+Junto com o código, vem a versão para scala 2.7.7. Também vem junto a biblioteca
+de mocks "mockito", de Java, disponível em:
+
+http://mockito.org/

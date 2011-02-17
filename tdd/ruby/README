@@ -1,0 +1,4 @@
+Para a linguagem Ruby, é possível usar duas bibliotecas: Ou o test/unit, que não precisa de nenhuma 
+biblioteca adicional, ou o RSpec, que necessita da biblioteca rspec. É possível instalá-la com:
+
+gem install rspec
