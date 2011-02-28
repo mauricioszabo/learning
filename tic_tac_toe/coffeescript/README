@@ -1,0 +1,26 @@
+CoffeeScript
+
+CoffeeScript é uma linguagem que "compila" para Javascript. Muitas das desvantagens
+do Javascript são abstraídas por essa "linguagem", e dessa forma fica mais fácil de
+programar. Porém, CoffeeScript não abstrai todos os problemas do Javascript, infelizmente. 
+
+Para esse projeto, foi engraçado usar CoffeeScript. Muitas vezes, parece realmente que
+você está usando outra linguagem, desligada de Javascript. E, em outros momentos, você
+tem uma mensagem de erro bizarra, e precisa ficar comentando trechos de código, pra
+tentar descobrir aonde está o erro...
+
+Enfim, este projeto: Ele é muito semelhante à versão em Ruby, apenas a idéia de métodos 
+privados que não é muito clara, já que estamos falando de Javascript...
+
+A parte mais estranha foi a leitura de caracteres. Como coffeescript está rodando sobre
+o node.js, e o node.js é uma biblioteca de "Evented IO", então a leitura de caracteres
+deve ser feita usando um "evento" ("data", do stdin), e é necessário pausar ou continuar
+o "stream" stdin, o que é bem estranho pra quem está acostumado com outras formas de
+programação. O "while" das outras linguagens é substituído, nesse caso, por um evento,
+ou seja, o programa roda enquanto houver dados sendo inseridos pelo stdin. Quando se
+pausa o stdin, se nenhum outro evento estiver registrado para rodar, então o programa
+sai - como é o caso.
+
+A proposta de fazer primeiro o jogo da velha em CoffeeScript ao invés de Javascript
+puro, com node.js, foi principalmente para evitar duas dificuldades grandes no
+desenvolvimento: mexer com "Evented IO" e com a linguagem Javascript fora de um browser.
