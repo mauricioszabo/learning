@@ -1,0 +1,21 @@
+Javascript com NodeJS
+
+Reiterando o que eu falei na versão Javascript via Browser, sim, é possível ler algum
+dado do stdin. Como NodeJS usa "Evented IO", é necessário fazer algum malabarismo, mas
+o resultado ficou relativamente simples.
+
+Esta versão é quase idêntica à versão em CoffeeScript, na verdade, o código foi
+praticamente copiado de uma versão para a outra. Porém, assim como na outra versão, optei
+por usar o padrão de "função construtora" ao invés do modelo "pseudoclássico" como Douglas
+Crockford definiu. Embora a versão em CoffeeScript usa o conceito de "classes", acredito que
+o uso de "classes" em Javascript é muito mais complexo do que deveria, e também 
+desnecessário para a maior parte dos programas.
+
+Outros problemas foram a ausência real de "closures". Em vários momentos fui tentado a usar
+a seguinte forma de percorrer arrays:
+
+  array.forEach( function(e) { .... });
+
+Porém, embora essa implementação é muito simples de ser usada e é suportada pela engine do
+NodeJS, na hora de usar o "return" dentro da função anônima interna, o valor do retorno não
+iria para lugar algum, e consequentemente não serviria para mim em nenhum caso.
