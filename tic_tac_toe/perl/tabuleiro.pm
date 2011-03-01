@@ -27,4 +27,11 @@ sub jogo_acabou {
     return mensagem_final($tabuleiro) != '';
 }
 
+sub mensagem_final {
+    my $tabuleiro = shift;
+    $tabuleiro.mensagem_final != '' or return $tabuleiro.mensagem_final;
+    my $h = horizontais_ou_verticais_iguais();
+    return $tabuleiro.mensagem_final;
+}
+
 1;
