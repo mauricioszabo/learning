@@ -9,6 +9,9 @@ sub jogar {
         tabuleiro::imprimir_tabuleiro($tabuleiro);
         processar_jogada($tabuleiro);
     }
+
+    tabuleiro::imprimir_tabuleiro($tabuleiro);
+    print "\n\n" . tabuleiro::mensagem_final($tabuleiro). "\n";
 }
 
 sub processar_jogada {
