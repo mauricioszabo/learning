@@ -1,0 +1,49 @@
+Perl
+
+Perl... a meu ver a linguagem mais relaxada que existe. Se não for usada a
+cláusula "use strict", praticamente qualquer erro é sutilmente ignorado, tal
+como acessar uma variável que não foi iniciada (ou que sequer existe), chamar
+uma função que não existe, etc. Mesmo com o "use strict", perl não determina
+nem checa o número de parâmetros que vai para uma função, e não fica nem um 
+pouco claro (sem ler o código) determinar quantos parâmetros uma função recebe,
+qual o nome dos parâmetros, etc...
+
+Além disso, alguns métodos operam implicitamente sobre a variável $_, e outras
+não (split? join?), e não é claro (especialmente para quem está começando com
+a linguagem) qual opera e qual não. Perl também é inconsistente nas comparações
+de inteiros (com ==) e comparações de string (com "eq"), e no uso de variáveis
+(afinal, porque diabos eu tenho que declarar uma @variavel e acessar seus
+elementos com $variavel[0]?).
+
+É praticamente impossível, a meu ver, escrever um código em Perl que não
+pareça ter sido escrito enquanto se estava com umas cinco doses de tequila
+na cabeça. Perl possui muito do chamado "sintatic salt", tal como pontuações
+desnecessárias (é mesmo necessário um ";" no fim de cada linha?), arrobas,
+cifrões, porcentagens, barras invertidas, chaves e a possível combinação de 
+cada um desses sinais em aberrações tal como o:
+
+  foreach (@{$tabuleiro->{matriz}}) {
+    foreach (@{$_}) {
+
+Perl também resolveu que o nome comum para certas estruturas (tal como Array
+e Hash) era muito comum, e resolveu renomeá-las para "Scalar" e "Associative
+Array". Da mesma forma, se você declará-las como:
+
+  my @array1 = (1, 2, 3);
+  my $array2 = [1, 2, 3];
+
+Elas contam como coisas diferentes. Mas, claro, se você quiser (e precisar)
+alterar o valor de um "scalar" em uma função, você deverá usar a segunda forma,
+o que efetivamente te proíbe de fazer essa forma simples de percorrê-la:
+
+  foreach ($array)
+
+Para esta outra:
+
+  foreach (@{$array})
+
+Enfim, uma linguagem bem temperamental. Embora eu gostaria de estudá-la mais,
+até o momento tudo indica que ela, verdadeiramente, é uma linguagem de script,
+e tentar usá-la para desenvolver um programa complexo é uma péssima idéia.
+
+E eu nem quero imaginar como é a orientação a objetos em Perl...
