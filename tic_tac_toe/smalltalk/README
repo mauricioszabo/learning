@@ -1,0 +1,42 @@
+Smalltalk
+
+Smalltalk é uma linguagem interessante. Nunca tinha programado nada
+útil além de um "hello world" básico, em Pharo ou em Squeak.
+
+Na sua versão "normal", não dá pra rodar um programa smalltalk por
+arquivos texto. Deve-se carregar uma "imagem", que é basicamente um
+"snapshot" da VM do Smalltalk, como se fosse uma máquina virtual tipo
+VMWare ou algo assim. Portanto, usei a implementação Gnu Smalltalk,
+que traz alguns problemas como por exemplo, o fato de arrays ficarem
+imutáveis se você declara-as com #(), bem como string (por isso o
+hack meio idiota no preecherX:y:).
+
+Smalltalk me pareceu meio inconsistente. Para "ser mais consistente",
+o comando a seguir:
+
+  1 + 2 * 3
+
+traz o resultado 9, porque todos os métodos são processados da esquerda
+para a direita, sempre. Portanto, primeiro ele faz a conta de soma,
+depois a multiplicação. Porém, o método:
+
+  array at: 1 - 2
+
+Primeiro contabiliza a conta 1-2, depois aplica o resultado ao método. O
+que torna muito chato lidar com matrizes bidimensionais, como o tabuleiro
+do jogo da velha, já que não dá para escrever:
+
+  array at: 1 at: 1
+
+Primeiro porque Smalltalk vai achar que o nome do método é at:at:, e 
+segundo porque mesmo que ele entendesse, provavelmente ia tentar aplicar
+o segundo "at:" ao número 1.
+
+No mais, uma experiência interessante: dá pra perceber duas coisas 
+interessantes: primeira, a herança com Ruby é bem visível, já que
+praticamente todos os métodos que Ruby possui estão em Smalltalk (exceto
+alguns bem específicos tipo o uniq e o transpose), com nomes diferentes.
+Segundo, porque dá para perceber como tudo em exagero é ruim: a excessiva
+"orientação a objeto" de Smalltalk dá nos nervos depois de um tempo com
+seus "ifTrue:", "ifFalse:", isNil, ausência de "and" e "or" e "not" como
+palavras-chave, e semelhantes.
