@@ -13,17 +13,18 @@ matrizInicial = [ [" ", " ", " "], [" ", " ", " "], [" ", " ", " "] ]
 jogar :: Matriz -> String -> IO ()
 jogar matriz jogador = do
     imprimirTabuleiro matriz jogador
-    jogada <- getLine
-    let xy = processarJogada (jogada)
-    if xy == (-1, -1)
-        then exibirErro "Erro na jogada: jogada deve ser A1, A2, B2, etc." matriz jogador
-        else if mensagemErro matriz == ""
-            then do
-                let novaMatriz = preencher xy matriz jogador
-                if novaMatriz == matriz
-                    then exibirErro "Quadrado já está preenchido!" matriz jogador
-                    else jogar novaMatriz (if jogador == "X" then "O" else "X")
-            else putStrLn "Cabei!"
+    if mensagemFinal matriz == ""
+        then do
+            jogada <- getLine
+            let xy = processarJogada (jogada)
+            if xy == (-1, -1)
+                then exibirErro "Erro na jogada: jogada deve ser A1, A2, B2, etc." matriz jogador
+                else do
+                    let novaMatriz = preencher xy matriz jogador
+                    if novaMatriz == matriz
+                        then exibirErro "Quadrado já está preenchido!" matriz jogador
+                        else jogar novaMatriz (if jogador == "X" then "O" else "X")
+        else putStrLn $ "\n" ++ (mensagemFinal matriz)
 
 processarJogada :: String -> (Int, Int)
 processarJogada jogada =
