@@ -12,8 +12,8 @@ class Tabuleiro {
     private char jogador = 'X';
 
     public void imprimir() {
-        for(int i = 0; i < tabuleiro.length; i++) {
-            System.out.println(tabuleiro[i]);
+        for(String t : tabuleiro) {
+            System.out.println(t);
         }
 
         System.out.print("\n Jogador " + jogador + ", sua escolha? ");

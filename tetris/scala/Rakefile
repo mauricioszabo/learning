@@ -1,0 +1,33 @@
+MAIN_CLASS = "main"
+
+BASE_DIR = File.dirname(__FILE__) + "/"
+BIN_DIR = BASE_DIR + "bin"
+SRC_DIR = BASE_DIR + "src"
+TEST_DIR = BASE_DIR + "test"
+LIB_DIR = BASE_DIR + "libs"
+CLASSPATH = (Dir["#{LIB_DIR}/**/*.jar"] + [BIN_DIR, LIB_DIR]).join(":")
+
+task :compile do
+  Dir.mkdir BIN_DIR unless File.exist? BIN_DIR
+  #sources = Dir["#{SRC_DIR}/**/*.java"]
+  #sources += Dir["#{TEST_DIR}/**/*.java"]
+  #res = system "javac", "-d", BIN_DIR, "-classpath", CLASSPATH, *sources
+
+  sources = Dir["#{SRC_DIR}/**/*.scala"]
+  sources += Dir["#{TEST_DIR}/**/*.scala"]
+  res = system "scalac", "-d", BIN_DIR, "-classpath", CLASSPATH, *sources
+  if res
+    puts "SUCCESS!!!"
+  else
+    puts "Failure on compilation. Check logs!"
+    exit 1
+  end
+end
+
+task :run => :compile do
+  res = system "scala", "-classpath", CLASSPATH, MAIN_CLASS
+end
+
+task :clean do
+  system "rm -R bin"
+end
