@@ -17,16 +17,14 @@ object Main extends Application {
 
     def processarJogada() {
         val jogada = stdin.readLine()
-        val regex = "^([ABC])([123])$".r.findAllIn(jogada)
-        if(!regex.hasNext) {
-            println("Erro na jogada: jogada deve ser A1, A2, B2, etc.")
-            return
-        }
-
-        val x = regex.group(1)(0) - 'A'
-        val y = regex.group(2).toInt - 1
-        if(!tabuleiro.preencher(x, y)) {
-            println("Quadrado já está preenchido!")
+        val regex = "^([ABC])([123])$".r
+        jogada match {
+            case regex(g1, g2) => {
+                val x = g1(0) - 'A'
+                val y = g2.toInt - 1
+                if(!tabuleiro.preencher(x, y)) println("Quadrado já está preenchido!")
+            }
+            case _ => println("Erro na jogada: jogada deve ser A1, A2, B2, etc.")
         }
     }
 }
