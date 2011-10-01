@@ -19,9 +19,7 @@ class Tree[a <% Ordered[a]] extends Traversable[a] {
         else root insertInto (root, value)
     }
 
-    override def foreach[U](block: a => U) {
-        getValueOn(root, block)
-    }
+    override def foreach[U](block: a => U) = getValueOn(root, block)
 
     private def getValueOn(node: Node[a], block: a => Any) {
         if(node.left != null) getValueOn(node.left, block)
