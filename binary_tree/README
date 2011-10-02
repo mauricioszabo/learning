@@ -1,4 +1,4 @@
-ARVORE BINÁRIA
+= ARVORE BINÁRIA =
 
 Bom, a idéia da árvore binária foi justamente por causa do monte de recursões que essa abordagem exige. Achei que seria uma boa ver como cada linguagem se comporta frente a códigos recursivos e principalmente, como a programação funcional pode ajudar (ou não) essa abordagem.
 
@@ -34,3 +34,8 @@ pode ser escrito assim em Haskell:
     main = print $ doubleList [1, 2, 4]
 
 Mais interessante ainda, a primeira linha (em Haskell) pode ser ignorada, pois ele inflexiona o tipo correto. Provavelmente eu conseguiria fazer algo assim em Scala, e vou tentar uma nova abordagem (talvez vou chamar de FunctionalHaskell.scala).
+
+
+== UPDATE ==
+
+Adicionada mais uma versão em Scala, chamada FunctionalHaskell.scala. Interessante ver como a adição da orientação a objetos em Scala traz uma vantagem óbvia sobre Haskell. O uso de "case classes" ficaram absurdamente claros, finalmente, nesse exemplo: em um modelo eu tinha ouvido falar que as "case classes" seriam os "javabeans" de scala, mas não é nada disso: ele é equivalente ao uso do "data" do Haskell. O exemplo em Scala deixou isso bem claro, e acredito que, dessa vez, deu pra perceber (finalmente) a vantagem da linguagem funcional sobre a imperativa pela primera vez.
