@@ -33,20 +33,7 @@ class Tree[A <% Ordered[A]](root: Option[Node[A]] = None) extends Traversable[A]
 }
 
 object Functional extends App {
-    val tree = new Tree[Int] << 
-        10 << 
-        1 << 
-        20 << 
-        2 << 
-        2 << 
-        5 << 
-        3 << 
-        12 << 
-        7 << 
-        6 << 
-        9 << 
-        11 << 
-        8
+    val tree = new Tree[Int] << 10 << 1 << 20 << 2 << 2 << 5 << 3 << 12 << 7 << 6 << 9 << 11 << 8
 
     tree foreach println
     println(tree.toList)

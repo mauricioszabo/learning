@@ -1,0 +1,36 @@
+ARVORE BINÁRIA
+
+Bom, a idéia da árvore binária foi justamente por causa do monte de recursões que essa abordagem exige. Achei que seria uma boa ver como cada linguagem se comporta frente a códigos recursivos e principalmente, como a programação funcional pode ajudar (ou não) essa abordagem.
+
+A idéia básica foi bem simples: criar uma árvore binária ordenada, com os valores:
+10, 1, 20, 2, 2, 5, 3, 12, 7, 6, 9, 11, 8
+
+A árvore deveria ficar mais ou menos assim:
+        (10)
+  (1)          (20)
+    (2)     (12)
+      (2)
+    (3) (5)
+
+E por aí vai. A idéia era percorrer a árvore, imprimindo todos os elementos (aplicando uma função de imprimir todos os elementos, percorrendo a árvore) e uma outra para transformar a árvore em lista. A idéia original era que fosse possível reaproveitar a primeira função para montar a segunda, mas isso não aconteceu na versão em Haskell.
+
+Bom, inicialmente, na versão imperativa (orientada a objetos), tanto em Ruby como em scala, a situação é bem semelhante. Na versão funcional, em Scala, as coisas já começam a mudar de figura...
+
+Por exemplo, em Scala, foi feito muito o uso de Pattern Matching, para identificar se um nó é um nó ou se ele é apenas uma árvore vazia. Acredito que posso melhorar esse código, depois que eu fiz a versão em Haskell...
+
+A versão em Haskell, para meu absoluto espanto, ficou com dez linhas a menos que a versão de Scala. A idéia de pattern match de Haskell (e a inflexão de tipagem) é infinitamente superior à de Scala, nas quais o próprio método pode passar parâmetros com "pattern match" e ser re-definido de acordo com o padrão... ou seja, um código assim em Scala:
+
+    def doubleList(s: List[Int]): List[Int] = s match {
+        case List() => List()
+        case s::sx => (s * 2) :: doubleList(sx)
+    }
+    println(doubleList(List(1, 2, 4))) // retorna: List(2, 4, 8)
+
+pode ser escrito assim em Haskell:
+
+    doubleList :: (Num a) => [a] -> [a]
+    doubleList [] = []
+    doubleList (s:sx) = s * 2 : doubleList sx
+    main = print $ doubleList [1, 2, 4]
+
+Mais interessante ainda, a primeira linha (em Haskell) pode ser ignorada, pois ele inflexiona o tipo correto. Provavelmente eu conseguiria fazer algo assim em Scala, e vou tentar uma nova abordagem (talvez vou chamar de FunctionalHaskell.scala).
