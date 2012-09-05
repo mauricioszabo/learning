@@ -20,9 +20,7 @@ pouco mais Java, especialmente nos "if", "while", etc.
 Certas construções de Scala ainda são muito nebulosas para mim 
 (por exemplo, o lance dos parênteses em  métodos que eu não sei quando 
 posso omitir e quando não), e tem coisas que a linguagem ainda pode melhorar 
-muito (principalmente nas iterações: falta um "any?", um "all?", e falta 
-também um "each_with_index" que eu realmente senti muita falta (assim como 
-um "splat operator")). Minha preocupação é só se ela vai se prender muito
+muito. Minha preocupação é só se ela vai se prender muito
 às bibliotecas Java e evitar versões mais "scala-friendly", mas isso só
 o tempo dirá.
 
@@ -30,7 +28,6 @@ Os pontos que eu mais gostei foram:
 
   tabuleiro foreach println //Embora eu não tenha entendido direito ainda
   private def todosPreenchidos = !matriz.exists(e => e.exists( e2 => e2 == null ) )
-  val regex = "^([ABC])([123])$".r.findAllIn(jogada) //Embora o suporte à regex possa melhorar
 
 E, principalmente, o código presente em horizontaisOuVerticaisIguais, que 
 lembra muito o "proc" do Ruby e pode ser muito bem usado para evitar duplicações.

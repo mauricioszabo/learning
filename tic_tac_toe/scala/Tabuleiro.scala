@@ -1,3 +1,5 @@
+import scala.collection.mutable.MutableList
+
 class Tabuleiro {
     val TABULEIRO = """
        A   B   C 
@@ -9,7 +11,9 @@ class Tabuleiro {
     """
     val tabuleiro = TABULEIRO.split("\n")
     
-    val matriz = Array( new Array[String](3), new Array[String](3), new Array[String](3) )
+    val matriz = MutableList[MutableList[String]](
+        MutableList(null,null,null), MutableList(null,null,null), MutableList(null,null,null)
+    )
     var jogador = "X"
     var m_mensagemFinal = ""
 
@@ -45,25 +49,15 @@ class Tabuleiro {
     }
 
     private def horizontaisOuVerticaisIguais: String = {
-        val comp = (m: Array[String]) => {
+        val comp = (m: MutableList[String]) => {
             if(!m.exists(e => e == null)) {
-                val elementos = m.toList.removeDuplicates
-                if(elementos.size == 1) return elementos.first
+                val elementos = m.distinct
+                if(elementos.size == 1) return elementos.head
             }
         }
         matriz foreach(comp)
-        transpose(matriz) foreach(comp)
+        matriz.transpose foreach(comp)
         return null
-    }
-
-    private def transpose(original: Array[Array[String]]) = {
-        val transposta = Array( new Array[String](3), new Array[String](3), new Array[String](3) );
-        for(x <- 0 to 2) {
-            for(y <- 0 to 2) {
-                transposta(y)(x) = original(x)(y)
-            }
-        }
-        transposta;
     }
 
     private def diagonaisIguais:String = {

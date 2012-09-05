@@ -1,6 +1,6 @@
 import java.io._
 
-object Main extends Application {
+object Main extends App {
     val tabuleiro = new Tabuleiro()
     val stdin = new BufferedReader(new InputStreamReader(System.in))
     jogar()
