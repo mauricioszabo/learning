@@ -13,7 +13,7 @@ class Tree[A <% Ordered[A]] extends Actor {
   def empty: Receive = {
     case Insert(id, element) => element match {
       case e: A =>
-        context become tree(e, newEmpty, newEmpty)
+        context become node(e, newEmpty, newEmpty)
         sender ! Inserted(id)
     }
     case Fn(id, _) => sender ! Finished(id)
@@ -21,7 +21,7 @@ class Tree[A <% Ordered[A]] extends Actor {
 
   private def newEmpty: ActorRef = context actorOf Props(new Tree[A])
 
-  def tree(element: A, left: ActorRef, right: ActorRef): Receive = {
+  def node(element: A, left: ActorRef, right: ActorRef): Receive = {
     case Insert(id, e: A) => if(e <= element) left ! Insert(id, e) else right ! Insert(id, e)
     case i: Inserted => context.parent ! i
 
@@ -29,8 +29,7 @@ class Tree[A <% Ordered[A]] extends Actor {
       pendingFns += (id -> fn)
       left ! Fn(id, fn)
 
-    case Finished(id) =>
-      pendingFns get id match {
+    case Finished(id) => pendingFns get id match {
       case Some(fn) =>
         fn(element)
         pendingFns -= id
@@ -49,11 +48,10 @@ class Main extends Actor {
     root ! Insert(id, e)
   }
 
-  root ! Fn(120, { e: Int => println("Element: " + e) })
+  root ! Fn(120, println(_: Int) )
 
   def receive = {
     case Finished(id) =>
-      println("Resolved!")
       context stop self
   }
 }
