@@ -11,7 +11,6 @@ class Node[A <% Ordered[A]](value: A = None, left: Option[Node[A]] = None, right
         case None => Some(new Node(newValue))
     }
 
-    //Quebrando o funcional...
     def getRecursiveValue[U](returnValue: A => U) {
         left foreach { e => e getRecursiveValue returnValue }
         returnValue(value)
@@ -25,14 +24,13 @@ class Tree[A <% Ordered[A]](root: Option[Node[A]] = None) extends Traversable[A]
         case None => new Tree(Some(new Node[A](value)))
     }
 
-    //Quebrando o funcional...
     def foreach[U](block: A => U) = root match {
         case Some(root) => root getRecursiveValue block
-        case None => 
+        case None =>
     }
 }
 
-object Functional extends App {
+object Immutable extends App {
     val tree = new Tree[Int] << 10 << 1 << 20 << 2 << 2 << 5 << 3 << 12 << 7 << 6 << 9 << 11 << 8
 
     tree foreach println

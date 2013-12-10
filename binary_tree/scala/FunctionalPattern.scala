@@ -7,13 +7,13 @@ class Tree[A <% Ordered[A]]() extends Traversable[A] {
 
     def foreach[U](f: (A => U)) = this match {
         case Node(value, left, right) => left foreach f; f(value); right foreach f
-        case EmptyTree() => 
+        case EmptyTree() =>
     }
 }
 case class EmptyTree[A <% Ordered[A]]() extends Tree[A]
 case class Node[A <% Ordered[A]](a: A, left: Tree[A], right: Tree[A]) extends Tree[A]
 
-object FunctionalHaskell extends App {
+object FunctionalPattern extends App {
     val tree = EmptyTree[Int] << 10 << 1 << 20 << 2 << 2 << 5 << 3 << 12 << 7 << 6 << 9 << 11 << 8
 
     tree foreach println

@@ -23,7 +23,7 @@ case class Node[A: Ordering](value: A, left: Tree = EmptyTree, right: Tree = Emp
   }
 }
 
-object FunctionalHaskell2 extends App {
+object FunctionalOO extends App {
     val tree = EmptyTree << 10 << 1 << 20 << 2 << 2 << 5 << 3 << 12 << 7 << 6 << 9 << 11 << 8
 
     tree foreach println
