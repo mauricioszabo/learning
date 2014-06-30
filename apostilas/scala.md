@@ -232,6 +232,52 @@ discontinuous(2) // Will return 0.5
 discontinuous(0.002) // Will return 500.0
 ```
 
+#### Boolean operations
+
+Obviously, to be able to use `if`, we need to be able to make boolean expressions. The most common operations are `==`, that defines equality, `!=`, that defines inequality (different). When using numbers, we'll use a lot `<` that means *less-than*, and `>` that means *greater-than*, and it's combinations with equal like `>=` and `<=`.
+
+> **Notice**
+
+> Please, be aware that `>=` means *greater than or equal*, but `=>` is **not** the same.
+
+Most of all, when we already have a boolean condition, we can combine then in meaningful ways. For instance, imagine we have some condition (c1) that is `true`, and another one (c2) that is `false`. We can negate any of these conditions preceding then with `!` (like `!c1`, which return `false`), or we can combine then with `||`, that means *or*, or we can combine then with `&&`, that means *and*. So, imagine we're programming a game, and we need to hit an object on the screen. If the object is in position x=10, and y=20, we can check with this code:
+
+```scala
+if(x == 10 && y == 20) {
+  // Code to run if hit
+} else {
+  // Code to run if not hit
+}
+```
+
+That translates to `if x equals 10 AND y equals 10, ...`. We should be aware of the difference between **and** and **or**: If we use **or**, the left expression can be `true`, the right can be `true`, or **both** can be `true` that we still return `true`. Only if both are `false` that *or* returns false. With **and**, both must be `true` to return `true`. Otherwise, *and* returns `false`
+
+| c1   | c2   | c1 \|\| c2   | c1 && c2   |
+|------|------|--------------|------------|
+|false |false | false        | false      |
+|true  |false | true         | false      |
+|false |true  | true         | false      |
+|true  |true  | true         | true       |
+
+But... this can become complicated. For instance, we'll start with **precedence**: in math, when we have an operation like `1 + 2 * 2`, the answer is `5`, not `6`, because we first do the multiplication (multiplication has higher precedence than addition). **or** and **and** are the same: **or** has less precedence than **and**. So, the code: `true || false && false` will resolve to `true || (false && false)`, then `true || false`, then `true`, and **not to** `(true || false) && false`, then `true && false`, ending with `false`.
+
+The second problem is the `else` clause. In the `if` case, we had `if(x == 10 && y == 20)`, but which is the `else` condition? In another words, when we'll get into the `else`? Someone might be tempted to say that it is when `x != 10 && y != 20`, but it is wrong! When negated, `&&` becomes `||`, and vice-versa. So, in this case, the correct answer is that the `else` condition is `x != 10 || y != 20`. This can become difficult to understand if the conditions grows (because of precedence rules, negations, and such) so we could create an identifier to hold the comparission:
+
+```scala
+val isHittingEnemy
+if(isHittingEnemy) {
+  // Code to run if hit
+} else {
+  // Code to run if not hit
+}
+```
+
+This way, the code becomes easier to read.
+
+> **Notice**
+
+> This is a common practice, and should be used and abused everytime we could. The idea, here, is to give code a *meaning*: in the first case, the condition was just a number comparission, without any clear meaning. In the second case, it has a meaning: it occurs when we hit a enemy. It is easier to read, and self-documented.
+
 ### Recursive functions
 
 Recursive functions are functions that need to call itself. The problem with recursive functions is that they can recurse itself to infinity, for instance, with the case:
@@ -1307,6 +1353,8 @@ def printProducts(iterator: ProductIterator) {
 
 printProducts(cart.products)
 ```
+
+Now, we have two ways of doing this iteration, one using immutable objects and procedures, and another using an auxiliary mutable class (the iterator) and methods.
 
 > **Why should we use it?**
 
