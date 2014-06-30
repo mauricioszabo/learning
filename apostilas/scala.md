@@ -1149,11 +1149,60 @@ Rice costs: R$ 7.0
 Milk costs: R$ 8.0
 ```
 
+### Mutable classes
+
+So far, all our classes were immutable: we don't change state for these classes, we just return a new one. Now, for an iterator, we **need** internal state! We need to know if we have more items, and if true, we have a method that returns the new item. For now, let's create our *contract* for an iterator of `Int` numbers:
+
+```scala
+abstract class IntIterator {
+  def hasNext: Boolean
+  def next: Int
+}
+```
+
+Now, suppose we want that iterator to iterate over number from 1 to 4. So, what we want is: we want t create an iterator that when I ask for `next`, it gives me `1`. After that, `next` is `2`, until `next` is `4`. Then, `hasNext` is `false`, and `next` is meaningless: it can throw an error, it can return the last number, it can return garbage, it doesn't matter. So, in this context, the number we will return will begin in `1`, and everytime we ask for `next`, it will be incremented by one. `hasNext` is easier: it is just if our next number is equals or less than `4`. 
+
+To be able to implement this, we need an identifier that can **vary**. We need a **variable**:
+
+```scala
+class ConcreteIntIterator extends IntIterator {
+  var nextNumber = 1
+  
+  def hasNext: Boolean = nextNumber <= 4
+  def next: Int = {
+    val numberToReturn = nextNumber
+    nextNumber = nextNumber + 1
+    numberToReturn
+  }
+}
+
+// We can use it like this:
+def getNumbers(iterator: IntIterator) {
+  if(iterator.hasNext) {
+    println("Next number is: " + iterator.next)
+    getNumbers(iterator)
+  }
+}
+getNumbers(new ConcreteIntIterator)
+```
+
+To use a variable, we declare a `var`, identify it by a name, and then we can change it (as long as we change it to something of the **same type**. So, in this case, our variable `number` is an `Int`, so we can change its value to another `Int` only). The complete definition for `var` is:
+
+<svg class="railroad-diagram" width="661" height="122" viewBox="0 0 661 122"><g transform="translate(.5 .5)"><path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path><path d="M40 31h10"></path><g><path d="M50 31h0"></path><path d="M94 31h0"></path><rect x="50" y="20" width="44" height="22" rx="10" ry="10"></rect><text x="72" y="35">var</text></g><path d="M94 31h10"></path><path d="M104 31h10"></path><g><path d="M114 31h0"></path><path d="M230 31h0"></path><rect x="114" y="20" width="116" height="22"></rect><text x="172" y="35">&lt;identifier></text></g><path d="M230 31h10"></path><g><path d="M240 31h0"></path><path d="M620 31h0"></path><path d="M240 31h20"></path><g><path d="M260 31h102"></path><path d="M498 31h102"></path><path d="M362 31h10"></path><g><path d="M372 31h0"></path><path d="M400 31h0"></path><rect x="372" y="20" width="28" height="22" rx="10" ry="10"></rect><text x="386" y="35">:</text></g><path d="M400 31h10"></path><path d="M410 31h10"></path><g><path d="M420 31h0"></path><path d="M488 31h0"></path><rect x="420" y="20" width="68" height="22"></rect><text x="454" y="35">&lt;type></text></g><path d="M488 31h10"></path></g><path d="M600 31h20"></path><path d="M240 31a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10"></path><g><path d="M260 61h0"></path><path d="M600 61h0"></path><g><path d="M260 61h0"></path><path d="M436 61h0"></path><path d="M260 61h20"></path><g><path d="M280 61h136"></path></g><path d="M416 61h20"></path><path d="M260 61a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path><g><path d="M280 81h0"></path><path d="M416 81h0"></path><path d="M280 81h10"></path><g><path d="M290 81h0"></path><path d="M318 81h0"></path><rect x="290" y="70" width="28" height="22" rx="10" ry="10"></rect><text x="304" y="85">:</text></g><path d="M318 81h10"></path><path d="M328 81h10"></path><g><path d="M338 81h0"></path><path d="M406 81h0"></path><rect x="338" y="70" width="68" height="22"></rect><text x="372" y="85">&lt;type></text></g><path d="M406 81h10"></path></g><path d="M416 81a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path></g><g><path d="M436 61h0"></path><path d="M600 61h0"></path><path d="M436 61h10"></path><g><path d="M446 61h0"></path><path d="M474 61h0"></path><rect x="446" y="50" width="28" height="22" rx="10" ry="10"></rect><text x="460" y="65">=</text></g><path d="M474 61h10"></path><g><path d="M484 61h0"></path><path d="M600 61h0"></path><path d="M484 61h20"></path><g><path d="M504 61h0"></path><path d="M580 61h0"></path><rect x="504" y="50" width="76" height="22"></rect><text x="542" y="65">&lt;value></text></g><path d="M580 61h20"></path><path d="M484 61a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10"></path><g><path d="M504 91h24"></path><path d="M556 91h24"></path><rect x="528" y="80" width="28" height="22" rx="10" ry="10"></rect><text x="542" y="95">_</text></g><path d="M580 91a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10"></path></g></g></g><path d="M600 61a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10"></path></g><path d="M 620 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g></svg>
+
+* **identifier** is an identifier for the variable, in camelCase notation
+* **type** is the type of the variable. In the upper branch, we **must** define it because we're creating an *abstract variable*. Like abstract methods, an *abstract variable* needs to be implemented in the concrete class that inherits from the abstract one
+* **value** is the value we want to give to the variable. In the above example, we gave `1` to the value. If our variable is not abstract, we **need** to give a value to it, or we can use `_`. If we use `_`, we're giving the variable a *default value*. It is **strongly encouraging** that you give a value, and not rely on the *default value* because it can differ for different classes.
+
+So, what we need to do is just use this kind of code to make our `ProductIterator`. In this case, our iterator will be constructed from the `ShoppingCart` itself. So, create these new classes seem so bothersome, since we'll need to create three new classes, one for the abstract iterator, one for the `EmptyCart` and one for the `AdditionalCart`. But there's an easier way, when we don't really need to create these new classes: using an *anonymous class*.
+
+> **Notice on mutable classes**
+
+> Most people program using mutable classes. Sometimes, it is easier. Sometimes, it is not. The fact that remains clear is that immutable classes are more predictable, they behave the same everytime we call their methods with the same parameters, they are more testable, and in general are better ideas. So, I **strongly encourage** you to restrict mutability the most you can.
+
 ### Anonymous classes
 
-Not all classes need to have names. We can create classes without names, and use then as if they are their superclasses. This is useful if we have abstract classes that we want to instantiate, but don't want to pass through the process of defining a new class and instantiating then. This is **important**: don't create anonymous classes for more complex cases-this can lead to code which is difficult to understand. That being said, let's imagine the following case: an *iterator*:
-
-Imagine we have structure that concentrates some kind of element, like our `ShoppingCart`. A possible implementation of an *iterator* is something that, when we have a new element, return it. If we have no element, we have an undefined behaviour. So, to see if we have new elements, we can use `hasNext`, that returns if we have, or not, new elements to return.
+Not all classes need to have names. We can create classes without names, and use then as if they were their superclasses. This is useful if we have simple abstract classes that we want to instantiate, but don't want to pass through the tedious process of defining a new class and instantiating then. This is **important**: don't create anonymous classes for more complex cases-this can lead to code which is difficult to understand. That being said, let's imagine the `ProductIterator`: 
 
 ```scala
 abstract class ProductIterator {
@@ -1161,6 +1210,8 @@ abstract class ProductIterator {
   def next: Product
 }
 ```
+
+We see that this `ProductIterator` is **exactly the same** as our `IntIterator`. This, too, is a kind of duplication we'll see how to avoid in the next chapter. For now, let's just look at how to implement it.
 
 Now, we see that we have to implement these two methods. So, our abstract `ShoppingCart` is:
 
@@ -1170,11 +1221,24 @@ abstract class ShoppingCart {
   def numberItems: Int
   def add(product: Product): ShoppingCart
   def remove(product: Product): ShoppingCart
+  
+  def foreachProduct(function: Product => Unit): Unit
   def products: ProductIterator
 }
 ```
 
-If we try to run our code right now, we'll see that we **need** to implement these methods on `EmptyCart` and `AdditionalCart`. This is a something we must **always** be aware of: when we're defining code that is meant to be inherited, if we add a new abstract method, we will need to add this abstract method to all subclasses, and this can be **really** problematic. But for now, let's implement it for `EmptyCart`:
+Now, we need to implement this code on each subclass. So, let's do it now. But first, we're not going to create a new class: we're going to try to instantiate a new `ProductIterator`, and somehow implement its methods:
+
+```scala
+val iterator = new ProductIterator {
+  def hasNext: Boolean = true
+  def next: Product = ???
+}
+
+iterator.hasNext // returns true
+```
+
+It works! It works as a `ProductIterator`, but has no name! So, what we can do is to implement these methods directly in our cart:
 
 ```scala
 object EmptyCart extends ShoppingCart {
@@ -1183,12 +1247,70 @@ object EmptyCart extends ShoppingCart {
   def add(product: Product): ShoppingCart = new AdditionalCart(product, this)
   def remove(product: Product): ShoppingCart = this
   
+  def foreachProduct(function: Product => Unit) {}
   def products: ProductIterator = new ProductIterator {
     def hasNext: Boolean = false
     def next: Product = ???
   }
 }
 ```
+
+For the `AdditionalCart`, we could make what we did until now: we pick the current product at first, then we delegate everything to the iterator of the last cart. We'll need a variable to check if we already called `next`. If we called, we delegate everything to the previous cart's iterator. Otherwise, we pick our product (and obviously, `hasNext` will be `true` in that case):
+
+```scala
+class AdditionalCart(product: Product, cart: ShoppingCart) extends ShoppingCart {
+  def total: Double = product.price + cart.total
+  def numberItems: Int = cart.numberItems + 1
+  def add(product: Product): ShoppingCart = new AdditionalCart(product, this)
+  def remove(product: Product): ShoppingCart = 
+    if(product == this.product) cart 
+    else new AdditionalCart(product, cart.remove(product))
+
+  def foreachProduct(function: Product => Unit) {
+    function(product)
+    cart.foreachProduct(function)
+  }
+  def products: ProductIterator = new ProductIterator {
+    var calledNext = false
+    val nextCartIterator = cart.products
+    
+    def hasNext: Boolean = 
+      if(calledNext) nextCartIterator.hasNext
+      else true
+      
+    def next: Product = 
+      if(calledNext) nextCartIterator.next
+      else {
+        calledNext = true
+        product
+      }
+  }
+}
+```
+
+And we can test it the same way we tested with `IntIterator`:
+
+```scala
+val p1 = new Product("1", "Milk", 8.0)
+val p2 = new Product("2", "Chocolate", 4.5)
+val p3 = new Product("3", "Rice", 7.0)
+
+val cart = EmptyCart.add(p1).add(p3)
+
+def printProducts(iterator: ProductIterator) {
+  if(iterator.hasNext) {
+    val p = iterator.next
+    println(p.name + " costs: R$ " + p.price)
+    getNumbers(iterator)
+  }
+}
+
+printProducts(cart.products)
+```
+
+> **Why should we use it?**
+
+> So far, this seems more complex than the way we did before... so why use it? Let's suppose you just want to get the two first products... or you just want to pick the first one. In the first example, you have no way of doing this. We need to iterate over **all** products to just pick a single product. This is one more example of *more than one way to make the same thing*, and it is one more tool in your toolbox.
 
 [^camelCase]: when we write identifiers, we need the camelCase notation. In this notation, every identifier starts with a lower case character, and is preceded by lowercase characters until we hit a space - then, we remove the space and the following word starts with a upper case character. So, for example, if we want an identifier to be named "ammount of money", in camelCase notation we write it as `ammountOfMoney`. It is possible to use numbers in camelCase, but not as the first character. So, for instance, `sumWith2` is a valid identifier, but `2ForOne` is not. camelCase is a convention used in Scala, Javascript, Java, C# and other languages. 
 
