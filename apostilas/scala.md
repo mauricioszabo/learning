@@ -1360,6 +1360,156 @@ Now, we have two ways of doing this iteration, one using immutable objects and p
 
 > So far, this seems more complex than the way we did before... so why use it? Let's suppose you just want to get the two first products... or you just want to pick the first one. In the first example, you have no way of doing this. We need to iterate over **all** products to just pick a single product. This is one more example of *more than one way to make the same thing*, and it is one more tool in your toolbox.
 
+## Typed classes or generics
+
+So far, we've seen classes, case classes, functions as types, and lots of other things. We've seen immutable classes, mutable classes, and the combination of all these things. Now, we enter in a new concept: typed classes.
+
+It seems a strange name: if classes are types, are we adding types to types? The answer is, yes, we're adding types to types. The reason for that is simple: we saw, in our iterator code, that we had two complete distinct iterators that behave **exactly** the same, differing only on the type that `next` returned. We could argue the same for the `ShoppingCart` example: let's take out the specific method `total`, and we end with a list of `Product`s:
+
+```scala
+abstract class ShoppingCart {
+  def size: Int
+  def add(product: Product): ShoppingCart
+  def remove(product: Product): ShoppingCart
+  def foreach(function: Product => Unit): Unit
+}
+
+object EmptyCart extends ShoppingCart {
+  def total: Double = 0.0
+  def numberItems: Int = 0
+  def add(product: Product): ShoppingCart = new AdditionalCart(product, this)
+  def remove(product: Product): ShoppingCart = this
+  def foreach(function: Product => Unit) {}
+}
+
+class AdditionalCart(product: Product, cart: ShoppingCart) extends ShoppingCart {
+  def total: Double = product.price + cart.total
+  def numberItems: Int = cart.numberItems + 1
+  def add(product: Product): ShoppingCart = new AdditionalCart(product, this)
+  def remove(product: Product): ShoppingCart = 
+    if(product == this.product) cart 
+    else new AdditionalCart(product, cart.remove(product))
+  def foreach(function: Product => Unit) {
+    function(product)
+    cart.foreachProduct(function)
+  }
+}
+```
+
+So, if we wanted to implement a list of anything, we need to remove the specific type `Product` and put a generic type everywhere it appears. That's the reason that *typed classes* is known as *generics* too - the idea is that we can sign on the class that it needs a generic type. Let's do it with `ShoppingCart`:
+
+```scala
+abstract class ShoppingCart[A] {
+  def size: Int
+  def add(element: A): ShoppingCart[A]
+  def remove(element: A): ShoppingCart[A]
+  def foreach(function: A => Unit): Unit
+}
+```
+
+First of all, we renamed the class to `ShoppingCart[A]`. This means that the class expects a **type parameter**. This structure, right now, is nothing different from a list, so we can rename it to `List[A]`. The implementation of Empty is almost the same for our `EmptyCart`, except we now need to pass the type parameter too:
+
+```scala
+abstract class List[A] {
+  def size: Int
+  def add(element: A): List[A]
+  def remove(element: A): List[A]
+  def foreach(function: A => Unit): Unit
+}
+
+object Empty[A] extends List[A] {
+  def numberItems: Int = 0
+  def add(element: A): List[A] = new NonEmpty(element, this)
+  def remove(element: A): List = this
+  def foreach(function: A => Unit) {}
+}
+```
+
+Except... that this doesn't work. The reason is simple: we're trying to define a `object`, but only *classes* can have type parameters. But, what type should we pass to `List[A]`? There's a special type in Scala that is `Nothing`, but we'll talk about it later[^reasonForNothing]. For now, let's just make `Empty` become a class:
+
+```scala
+abstract class List[A] {
+  def size: Int
+  def add(element: A): List[A]
+  def remove(element: A): List[A]
+  def foreach(function: A => Unit): Unit
+}
+
+class Empty[A] extends List[A] {
+  def size: Int = 0
+  def add(element: A): List[A] = new NonEmpty(element, this)
+  def remove(element: A): List[A] = this
+  def foreach(function: A => Unit) {}
+}
+```
+
+Now, we need to implement `NonEmpty[A]` class. We'll reuse the `AdditionalCart` example, renaming things when needed:
+
+```scala
+abstract class List[A] {
+  def size: Int
+  def add(element: A): List[A]
+  def remove(element: A): List[A]
+  def foreach(function: A => Unit): Unit
+}
+
+class Empty[A] extends List[A] {
+  def size: Int = 0
+  def add(element: A): List[A] = new NonEmpty[A](element, this)
+  def remove(element: A): List[A] = this
+  def foreach(function: A => Unit) {}
+}
+
+class NonEmpty[A](element: A, list: List[A]) extends List[A] {
+  def size: Int = list.size + 1
+  def add(element: A): List[A] = new NonEmpty[A](element, this)
+  def remove(element: A): List[A] = 
+    if(element == this.element) list 
+    else new NonEmpty[A](element, list.remove(element))
+
+  def foreach(function: A => Unit) {
+    function(element)
+    list.foreach(function)
+  }
+}
+```
+
+Now, things work. But, it is **very** tedious to write all these `new NonEmpy[A]`. But, there's a better way, and all relies on the constructor! The constructor expects a parameter named `element`, which is of the generic type (`element: A`). Scala can inflect the type that the list will return by looking at the parameter: for example, if we pass `10` to the constructor of `NonEmpty[A]`, Scala infers that `10` is an `Int`, so `NonEmpty[Int]` will be returned. Let's try:
+
+```scala
+abstract class List[A] {
+  def size: Int
+  def add(element: A): List[A]
+  def remove(element: A): List[A]
+  def foreach(function: A => Unit): Unit
+}
+
+class Empty[A] extends List[A] {
+  def size: Int = 0
+  def add(element: A): List[A] = new NonEmpty(element, this)
+  def remove(element: A): List[A] = this
+  def foreach(function: A => Unit) {}
+}
+
+class NonEmpty[A](element: A, list: List[A]) extends List[A] {
+  def size: Int = list.size + 1
+  def add(element: A): List[A] = new NonEmpty(element, this)
+  def remove(element: A): List[A] = 
+    if(element == this.element) list 
+    else new NonEmpty(element, list.remove(element))
+
+  def foreach(function: A => Unit) {
+    function(element)
+    list.foreach(function)
+  }
+}
+```
+
+Cleaner. Now, we have a general `List[A]` to be able to be used in anything we want to list. And it is generic! But, let's look a little more on its structure 
+### Lists (Cons), Linked Lists, and other classes
+
+As we saw on the `ProductCart` example, our product cart is like a list of carts linked by the first element: the first element is always visible, but we have to pass through the first element if we want the second element. If we have the third, we need to pass through the first *and* the second, and so on. At the end of this great stack of carts, we have an `Empty` cart, that delimiters the end of our elements. In more general terms, we call that structure a **Cons**. Every *cons* has head (the current element) and a tail, that is *another cons*, all the way down until the last element-which, by the way, have no *head* because it's empty. Scala has this already implemented by us: it is called a `List`. Every `List` works like we used here: we'll always **prepend** a element into it's *head*. This means that the *last element* we added will be the *first* element we will get when we iterate over the elements. These kind of structures, in general, are what we call  **FILO** - <b>F</b>irst <b>I</b>n, <b>L</b>ast <b>O</b>ut. In other words, the first element we enter will be the last element we get when we iterate over it.
+
 [^camelCase]: when we write identifiers, we need the camelCase notation. In this notation, every identifier starts with a lower case character, and is preceded by lowercase characters until we hit a space - then, we remove the space and the following word starts with a upper case character. So, for example, if we want an identifier to be named "ammount of money", in camelCase notation we write it as `ammountOfMoney`. It is possible to use numbers in camelCase, but not as the first character. So, for instance, `sumWith2` is a valid identifier, but `2ForOne` is not. camelCase is a convention used in Scala, Javascript, Java, C# and other languages. 
 
 [^answer1]: The first code doesn't work because we're passing a decimal to a function that expects an integer. Scala doesn't knows what to do with the decimal number - should it round up? Round down? Discard the decimal part altogether? As for the second function, it'll work because we're passing an integer to a function that expects a decimal - converting from integer to decimal is a simple matter of adding a decimal part to it. To understand better, try to imagine that if I want a decimal, and passes it the number `2`, I can convert it to a decimal simply: `2.0` is a valid decimal. But, if I want an integer, and get a `2.4`, I don't have a sane way to automatically convert it to an integer.
@@ -1371,3 +1521,5 @@ Now, we have two ways of doing this iteration, one using immutable objects and p
 [^UpperCamelCase]: In most programming languages, when defining a type (creating a new class, for instance), we use CamelCase too, but in this case the first character is in upper case. So, if we need to create a class to represent printers, we could name a class for inkjet printers as `InkjetPrinter`, for instance.
 
 [^caseClassProblem]: Here we see a **very** interesting thing: sometimes, programming languages' creators make some decisions that not all people agree. This is normal, and it's the work of programmers to know, and circunvent, programming languages' limitations.
+
+[^reasonForNothing]: We'll see later how to work with `Nothing`. For now, let's just say it is not as simple as it should: for an example, in `Empty` object we'll have to define `add` method; it's signature will become `add(element: Nothing): List[Nothing]` after we substitute the type parameter... but we cannot define an object as a subclass of `Nothing`, neither we can create an instance of `Nothing`, so in effect our object will be useless.
