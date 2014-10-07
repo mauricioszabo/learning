@@ -1,0 +1,26 @@
+Prolog
+
+Prolog é uma linguagem bem diferente. Primeiro, porque não há exatamente "comandos", 
+tudo é feito usando-se inferência lógica. Não há, por exemplo, um comando que 
+concatenalistas - há um comando que, dadas duas lista, vê se elas concatenadas são 
+iguais àterceira lista. Aí, podemos deixar uma variável no terceiro parâmetro, e 
+prolog se encarrega de preenchê-la com a lista concatenada.
+
+Segundo, porque ela não é determinística-um comando pode trazer um ou mais resultados.
+Prolog compensa esse desafio usando "circuit breaker", que torna a inferência
+determinística, mas essas coisas são difíceis de usar.
+
+Programar em Prolog é meio desafiante. Porém, a idéia de usar inferências é 
+simplesmente fenomenal em alguns casos. Por exemplo, é fácil saber se a jogada
+está correta, se o usuário está tentando jogar num quadrado já preenchido, se há uma
+posição ainda vazia, bem como criar o tabuleiro e alterá-lo. Entretanto, toda a parte
+de I/O, e principalmente a parte de impressão do tabuleiro é sofrível. Num primeiro 
+momento, fiz toda a impressão manualmente, depois tente melhorar usando recursão.
+Imprimir coisas na tela usando recursão é bem complicado, para dizer o mínimo, além
+de alguns comandos como "array.join" e outros que não existem em Prolog, bem como o
+fato de que, para Prolog, leitura de caracteres pelo console retorna uma lista com os
+códigos ASCII dos caracteres.
+
+O código foi feito em SWI-Prolog. Para rodá-lo, basta rodar "prolog -s tic_tac_toe.pl".
+No futuro, tentarei fazer uma pequena IA nesse código, pois não parece ser algo difícil
+de ser feito.
