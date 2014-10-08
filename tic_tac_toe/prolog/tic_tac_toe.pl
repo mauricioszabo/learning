@@ -16,6 +16,9 @@ won(Player) :- board('A', Y, Player), board('B', Y, Player), board('C', Y, Playe
 won(Player) :- board('A', '1', Player), board('B', '2', Player), board('C', '3', Player).
 won(Player) :- board('C', '1', Player), board('B', '2', Player), board('A', '1', Player).
 
+next_player('X', 'O').
+next_player('O', 'X').
+
 read_input(Player) :-
     get_single_char(Col), atom_codes(C, [Col]), write(C), member(Col, "ABC"),
     get_single_char(Row), atom_codes(R, [Row]), write(R), nl, member(Row, "123"),
@@ -24,9 +27,6 @@ read_input(Player) :-
 
 read_input(_) :- nl, write('Erro na jogada: jogada deve ser A1, A2, B2, etc,'),
     write(' e não pode ocupar um quadrado já preenchido.'), nl, fail.
-
-next_player('X', 'O').
-next_player('O', 'X').
 
 prompt(Player) :- write('Jogador '), write(Player), write(', sua escolha? ').
 prompt(_) :- fail.
