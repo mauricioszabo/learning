@@ -91,6 +91,8 @@ The full syntax of defining functions, in Scala, is the following railroad diagr
 <svg class="railroad-diagram" width="1293" height="321" viewBox="0 0 1293 321"><g transform="translate(.5 .5)"><path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path><path d="M40 31h10"></path><g><path d="M50 31h0"></path><path d="M94 31h0"></path><rect x="50" y="20" width="44" height="22" rx="10" ry="10"></rect><text x="72" y="35">def</text></g><path d="M94 31h10"></path><path d="M104 31h10"></path><g><path d="M114 31h0"></path><path d="M206 31h0"></path><rect x="114" y="20" width="92" height="22"></rect><text x="160" y="35">&lt;fn-name></text></g><path d="M206 31h10"></path><g><path d="M216 31h0"></path><path d="M724 31h0"></path><path d="M216 31h20"></path><g><path d="M236 31h468"></path></g><path d="M704 31h20"></path><path d="M216 31a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path><g><path d="M236 51h0"></path><path d="M704 51h0"></path><path d="M236 51h10"></path><g><path d="M246 51h0"></path><path d="M274 51h0"></path><rect x="246" y="40" width="28" height="22" rx="10" ry="10"></rect><text x="260" y="55">(</text></g><path d="M274 51h10"></path><g><path d="M284 51h0"></path><path d="M656 51h0"></path><path d="M284 51h20"></path><g><path d="M304 51h332"></path></g><path d="M636 51h20"></path><path d="M284 51a10 10 0 0 1 10 10v9a10 10 0 0 0 10 10"></path><g><path d="M304 80h0"></path><path d="M636 80h0"></path><path d="M304 80a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path><g><path d="M324 60h292"></path></g><path d="M616 60a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path><path d="M304 80h20"></path><g><path d="M324 80h0"></path><path d="M616 80h0"></path><path d="M324 80h10"></path><g><path d="M334 80h0"></path><path d="M606 80h0"></path><path d="M334 80h10"></path><g><path d="M344 80h0"></path><path d="M460 80h0"></path><rect x="344" y="69" width="116" height="22"></rect><text x="402" y="84">&lt;param-name></text></g><path d="M460 80h10"></path><path d="M470 80h10"></path><g><path d="M480 80h0"></path><path d="M508 80h0"></path><rect x="480" y="69" width="28" height="22" rx="10" ry="10"></rect><text x="494" y="84">:</text></g><path d="M508 80h10"></path><path d="M518 80h10"></path><g><path d="M528 80h0"></path><path d="M596 80h0"></path><rect x="528" y="69" width="68" height="22"></rect><text x="562" y="84">&lt;type></text></g><path d="M596 80h10"></path></g><path d="M606 80h10"></path><path d="M334 80a10 10 0 0 0 -10 10v10a10 10 0 0 0 10 10"></path><g><path d="M334 110h122"></path><path d="M484 110h122"></path><rect x="456" y="99" width="28" height="22" rx="10" ry="10"></rect><text x="470" y="114">,</text></g><path d="M606 110a10 10 0 0 0 10 -10v-10a10 10 0 0 0 -10 -10"></path></g><path d="M616 80h20"></path></g><path d="M636 80a10 10 0 0 0 10 -10v-9a10 10 0 0 1 10 -10"></path></g><path d="M656 51h10"></path><g><path d="M666 51h0"></path><path d="M694 51h0"></path><rect x="666" y="40" width="28" height="22" rx="10" ry="10"></rect><text x="680" y="55">)</text></g><path d="M694 51h10"></path></g><path d="M704 51a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path></g><g><path d="M724 31h20a10 10 0 0 1 10 10v90a10 10 0 0 1 -10 10h-724a10 10 0 0 0 -10 10v31a10 10 0 0 0 10 10"></path></g><g><path d="M20 192h0"></path><path d="M252 192h0"></path><path d="M20 192h20"></path><g><path d="M40 192h192"></path></g><path d="M232 192h20"></path><path d="M20 192a10 10 0 0 1 10 10v0a10 10 0 0 0 10 10"></path><g><path d="M40 212h0"></path><path d="M232 212h0"></path><path d="M40 212h10"></path><g><path d="M50 212h0"></path><path d="M78 212h0"></path><rect x="50" y="201" width="28" height="22" rx="10" ry="10"></rect><text x="64" y="216">:</text></g><path d="M78 212h10"></path><path d="M88 212h10"></path><g><path d="M98 212h0"></path><path d="M222 212h0"></path><rect x="98" y="201" width="124" height="22"></rect><text x="160" y="216">&lt;return-type></text></g><path d="M222 212h10"></path></g><path d="M232 212a10 10 0 0 0 10 -10v0a10 10 0 0 1 10 -10"></path></g><g><path d="M252 192h0"></path><path d="M548 192h0"></path><path d="M252 192h20"></path><g><path d="M272 192h0"></path><path d="M528 192h0"></path><path d="M272 192h10"></path><g><path d="M282 192h0"></path><path d="M310 192h0"></path><rect x="282" y="181" width="28" height="22" rx="10" ry="10"></rect><text x="296" y="196">{</text></g><path d="M310 192h10"></path><path d="M320 192h10"></path><g><path d="M330 192h0"></path><path d="M470 192h0"></path><rect x="330" y="181" width="140" height="22"></rect><text x="400" y="196">&lt;function-body></text></g><path d="M470 192h10"></path><path d="M480 192h10"></path><g><path d="M490 192h0"></path><path d="M518 192h0"></path><rect x="490" y="181" width="28" height="22" rx="10" ry="10"></rect><text x="504" y="196">}</text></g><path d="M518 192h10"></path></g><path d="M528 192h20"></path><path d="M252 192a10 10 0 0 1 10 10v10a10 10 0 0 0 10 10"></path><g><path d="M272 222h34"></path><path d="M494 222h34"></path><rect x="306" y="211" width="188" height="22"></rect><text x="400" y="226">&lt;function-expression></text></g><path d="M528 222a10 10 0 0 0 10 -10v-10a10 10 0 0 1 10 -10"></path></g><path d="M 548 192 h 20 m -10 -10 v 20 m 10 -20 v 20"></path></g></svg>
   
   * **fn-name** is a function name. This defines the name of the function, and **must** be written with camelCase[^camelCase] notation
+[^camelCase]: when we write identifiers, we need the camelCase notation. In this notation, every identifier starts with a lower case character, and is preceded by lowercase characters until we hit a space - then, we remove the space and the following word starts with a upper case character. So, for example, if we want an identifier to be named "ammount of money", in camelCase notation we write it as `ammountOfMoney`. It is possible to use numbers in camelCase, but not as the first character. So, for instance, `sumWith2` is a valid identifier, but `2ForOne` is not. camelCase is a convention used in Scala, Javascript, Java, C# and other languages. 
+
   * **param-name** is a parameter name. This defines the name of a parameter in a function, in camelCase notation. It can not have the same name as another parameter in this same function
   * **type** the type of parameter, like `Int` or `Double` or `String`. We'll see more types later, so for now, `Int` is an Integer, and `Double` is a Decimal.
   * **return-type**: the function, too, must return a type, so we declare it explicit here. We can omit this parameter, but sometimes the function will not be able to infer the return type, so we need to declare it explicit in these cases
@@ -111,6 +113,9 @@ def sumOfSquares(param1: Int, param2: Int) =
 ```
 
 Below, there are some lines of code that work, and some that don't. Can you guess why? The answer is in a footnote[^answer1], but I **strongly** encourage you to understand why
+
+[^answer1]: The first code doesn't work because we're passing a decimal to a function that expects an integer. Scala doesn't knows what to do with the decimal number - should it round up? Round down? Discard the decimal part altogether? As for the second function, it'll work because we're passing an integer to a function that expects a decimal - converting from integer to decimal is a simple matter of adding a decimal part to it. To understand better, try to imagine that if I want a decimal, and passes it the number `2`, I can convert it to a decimal simply: `2.0` is a valid decimal. But, if I want an integer, and get a `2.4`, I don't have a sane way to automatically convert it to an integer.
+
 
 ```scala
 // This is a comment: it will not be interpreted by Scala in any way
@@ -150,6 +155,8 @@ def sumOfSquares(n1: Int, n2: Int) =
 Procedures are like functions, but they don't **return** anything. We'll see procedures later, but as for now, we can imagine a code that prints something into the screen as a procedure - it just prints something, it does not return anything and it is not expected to do it anyway. In Scala, there's a special type for procedures - `Unit`. So, in Scala, we can say that a procedure is a function that **returns** `Unit`, and that `Unit` is a special type that has no meaning, cannot be converted to and from anything, and **must** be discarded. 
 
 As for functions, we're still missing one point: we need to know what is happening in the code. Suppose that I have the following application[^application] of the above function:
+
+[^application]: We call "function application" when we have a function defined, and we call it with a number of parameters. It is **very** important to understand that *function application* and *function calling* are **exactly** the same thing, but we call it "application" because it is a more mathematical-correct term, and because we'll see it in action how the computer uses the parameters that we pass to the function to compute, in fact, a result.
 
 ```scala
 sumOfSquares(3, 4)
@@ -324,6 +331,55 @@ factorial(3) = 6
 
 We can see that in the above code, we have a problem with the return: everytime that we need to return something, we need to "remember" the last return, and calculate factorial again. This is problematic in most programming languages, and there's a better way to work around this that is called Tail Recursion.
 
+#### From logic to programming
+
+One better use for the *substitution principle* is to find out how to compose our programs. Let's use again the `factorial` function. In the last example we created a `factorial` function, but how did we got from the rules we had to code? Let's first review the rules we had: 
+
+* Factorial of 0 is 1. 
+* Factorial of any other number is the number multiplied by factorial of number - 1`.
+
+Let's write this in examples:
+
+```scala
+factorial(0) = 1
+
+factorial(3) = 3 * factorial(2)
+factorial(2) = 2 * factorial(1)
+factorial(1) = 1 * factorial(0)
+```
+
+We can substitute the `3`, and the `2` in these examples, for an identifier - let's say, `x`:
+
+```scala
+factorial(0) = 1
+factorial(x) = x * factorial(x - 1)
+```
+
+In fact, this is the way that we write the code in **Haskell**: 
+
+```haskell
+factorial 0 = 1
+factorial x = x * factorial (x - 1)
+```
+
+But, back to **Scala**: we cannot have the same kind function definition that we have on Haskell. We need to use `if` to check if the value we're trying to check is zero or not. So, let's try with `if` right now:
+
+```scala
+factorial(x) = 
+  if(x == 0) 1
+  else x * factorial(x - 1)
+```
+
+Now, we have our `factorial` definition. Except that when `x` is less than zero, we'll have an *infinite loop*. In this case, we have to check for `x` less than zero too. In this case, let's change a little the `factorial` code to return 1 when `x` is less than zero too:
+
+```scala
+factorial(x) = 
+  if(x <= 0) 1
+  else x * factorial(x - 1)
+```
+
+Now, the code works properly.
+
 ### Tail recursive function
 
 We say that a function is tail-recursive if, when recursing (in other words, when it calls itself) the function **only** calls itself, and don't do anything else before or after it calls itself: arithmetic expression, no concatenation, nothing. Let's see how to transform our `factorial` into a tail-recursive version.
@@ -417,6 +473,8 @@ Note: you can skip this session if you're not confident, but *please* be sure to
 For a computer to work, it needs to send commands to the processor. The processor has a way to sum, multiply, subtract and do other arithmetic operations **really** fast. There is another, slower way to process arithmetic data that relies on a higher level of abstraction and don't depend on primitive types. But, if there is a faster way to process arithmetic data, why use a slower one? The answer is how the processor process and represents primitive data.
 
 To represent an Integer, most programming languages uses the size of a "Word". In a 64-bit system, the word is 64 bits. On Scala, to be able to be compatible with any system, all integers are 32-bits[^bit]-this means we can, at least in theory, represent 2<sup>32</sup> different numbers.
+
+[^bit]: Remember, a bit can only store two single values: `0` and `1`. So, in this case, `1 + 1` is `10`, `10 + 1` is `11`, `11 + 1` is `100`, and so on.
 
 But in scala, an `Int` is a **signed** integer - in other words, it needs to be able to represent negative numbers. So, computer uses a way do identify negative numbers - it uses the *most significant bit* (the bit most on the left) to say if a number is negative - `0` represents a positive number, `1` a negative one. Let's simulate this with the following table: suppose our `Int`s are not 32, but only 3 bits:
 
@@ -568,6 +626,8 @@ A class is nothing more than a collection of attributes and behavior. A class, i
 
 Let's see how could we work with case classes. Imagine we would make a simple supermarket application. To do this, the primary object we would need is a `Product`[^UpperCamelCase]. For now, let's say that each product has a code, a name and a price
 
+[^UpperCamelCase]: In most programming languages, when defining a type (creating a new class, for instance), we use CamelCase too, but in this case the first character is in upper case. So, if we need to create a class to represent printers, we could name a class for inkjet printers as `InkjetPrinter`, for instance.
+
 ```scala
 case class Product(code: String, name: String, price: Double)
 def totalPrice(p1: Product, p2: Product): Double = p1.price + p2.price
@@ -712,6 +772,8 @@ p1.price
 ```
 
 Ok, so now we have some things to look around: first, we're not using `case class` anymore. That is because a `case class` cannot be inherited... and as we don't know if we're going to inherit a class in the future, is better to just not risk using a case class. Pity[^caseClassProblem]. 
+
+[^caseClassProblem]: Here we see a **very** interesting thing: sometimes, programming languages' creators make some decisions that not all people agree. This is normal, and it's the work of programmers to know, and circunvent, programming languages' limitations.
 
 The second is that when we decide to not use case classes, we lost the benefit of declaring, on the constructor, a code, name and price, and these objects to be available immediately with the dot (`.`) notation. We can correct these things in two simple ways: first, to rename the param and define a method or a value to the name we want it:
 
@@ -1246,6 +1308,43 @@ So, what we need to do is just use this kind of code to make our `ProductIterato
 
 > Most people program using mutable classes. Sometimes, it is easier. Sometimes, it is not. The fact that remains clear is that immutable classes are more predictable, they behave the same everytime we call their methods with the same parameters, they are more testable, and in general are better ideas. So, I **strongly encourage** you to restrict mutability the most you can.
 
+#### Substitution principle, revised
+
+In the first chapters, we saw the **substitution principle**, but let's remind ourselves about that. We'll use the `factorial` example (with a very low value, to not extend ourselves too much-let's say, `2`):
+
+```scala
+def factorial(x) =
+  if(x <= 0) 1
+  else x * factorial(x - 1)
+
+factorial(2) = if(2 <= 0) 1 else 2 * factorial(2 - 1)
+factorial(2) = 2 * factorial(1)
+factorial(2) = 2 * (if(1 <= 0) 1 else 1 * factorial(1 - 1))
+factorial(2) = 2 * (1 * factorial(0))
+factorial(2) = 2 * (1 * (if(0 <= 0) 1 else factorial(0 - 1)))
+factorial(2) = 2 * (1 * (1))
+factorial(2) = 2 * 1
+factorial(2) = 2
+```
+
+Now, let's try to apply the substitution principle to a simpler code: let's say, a simple object that we'll name `Incrementer`:
+
+```scala
+object Incrementer {
+  var number = 0
+  def next = {
+    number = number + 1
+    number
+  }
+}
+
+// We can use it like this:
+Incrementer.next // Returns 1
+Incrementer.next // Returns 2
+```
+
+Now, when we run the `Incrementer.next`, what should we substitute? The fact is, there is **no way** to apply the substitution principle on mutable data. The substitution principle is a mathematical principle, but mutable variables are not; so, to check if our code is correct we must keep track of all mutable data (objects, variables, and such) and update then as the program keeps running.
+
 ### Anonymous classes
 
 Not all classes need to have names. We can create classes without names, and use then as if they were their superclasses. This is useful if we have simple abstract classes that we want to instantiate, but don't want to pass through the tedious process of defining a new class and instantiating then. This is **important**: don't create anonymous classes for more complex cases-this can lead to code which is difficult to understand. That being said, let's imagine the `ProductIterator`: 
@@ -1425,7 +1524,9 @@ object Empty[A] extends List[A] {
 }
 ```
 
-Except... that this doesn't work. The reason is simple: we're trying to define a `object`, but only *classes* can have type parameters. But, what type should we pass to `List[A]`? There's a special type in Scala that is `Nothing`, but we'll talk about it later[^reasonForNothing]. For now, let's just make `Empty` become a class:
+Except... that this doesn't work. The reason is simple: we're trying to define a `object`, but only *classes* can have type parameters. But, what type should we pass to `List[A]`? There's a special type in Scala, `Nothing`, that behaves as a subclass of everything else, but it is not as simple to work with it so we'll talk about it later[^reasonForNothing]. For now, let's just make `Empty` become a class:
+
+[^reasonForNothing]: We'll see later how to work with `Nothing`. For now, let's just say it is not as simple as it should: for an example, in `Empty` object we'll have to define `add` method; it's signature will become `add(element: Nothing): List[Nothing]` after we substitute the type parameter... but we cannot define an object as a subclass of `Nothing`, neither we can create an instance of `Nothing`, so in effect our object will be useless.
 
 ```scala
 abstract class List[A] {
@@ -1474,7 +1575,7 @@ class NonEmpty[A](element: A, list: List[A]) extends List[A] {
 }
 ```
 
-Now, things work. But, it is **very** tedious to write all these `new NonEmpy[A]`. But, there's a better way, and all relies on the constructor! The constructor expects a parameter named `element`, which is of the generic type (`element: A`). Scala can inflect the type that the list will return by looking at the parameter: for example, if we pass `10` to the constructor of `NonEmpty[A]`, Scala infers that `10` is an `Int`, so `NonEmpty[Int]` will be returned. Let's try:
+Now, things work. But, it is **very** tedious to write all these `new NonEmpy[A]`. But, there's a better way, and all relies on the constructor! The constructor expects a parameter named `element`, which is of the generic type (`element: A`). Scala can infer the type that the list will return by looking at the parameter: for example, if we pass `10` to the constructor of `NonEmpty[A]`, Scala infers that `10` is an `Int`, so `NonEmpty[Int]` will be returned. Let's try:
 
 ```scala
 abstract class List[A] {
@@ -1508,18 +1609,10 @@ class NonEmpty[A](element: A, list: List[A]) extends List[A] {
 Cleaner. Now, we have a general `List[A]` to be able to be used in anything we want to list. And it is generic! But, let's look a little more on its structure 
 ### Lists (Cons), Linked Lists, and other classes
 
-As we saw on the `ProductCart` example, our product cart is like a list of carts linked by the first element: the first element is always visible, but we have to pass through the first element if we want the second element. If we have the third, we need to pass through the first *and* the second, and so on. At the end of this great stack of carts, we have an `Empty` cart, that delimiters the end of our elements. In more general terms, we call that structure a **Cons**. Every *cons* has head (the current element) and a tail, that is *another cons*, all the way down until the last element-which, by the way, have no *head* because it's empty. Scala has this already implemented by us: it is called a `List`. Every `List` works like we used here: we'll always **prepend** a element into it's *head*. This means that the *last element* we added will be the *first* element we will get when we iterate over the elements. These kind of structures, in general, are what we call  **FILO** - <b>F</b>irst <b>I</b>n, <b>L</b>ast <b>O</b>ut. In other words, the first element we enter will be the last element we get when we iterate over it.
+As we saw on the `ProductCart` example, our product cart is like a list of carts linked by the first element: the first element is always visible, but we have to pass through the first element if we want the second element. If we have the third, we need to pass through the first *and* the second, and so on. At the end of this great stack of carts, we have an `Empty` cart, that delimiters the end of our elements. In more general terms, we call that structure a **Cons**. Every *cons* has head (the current element) and a tail, that is *another cons*, all the way down until the last element-which, by the way, have no *head* because it's empty. Scala has this already implemented by us: it is called a `List`. Every `List` works like we used here: we'll always **prepend** a element into it's *head*. This means that the *last element* we added will be the *first* element we will get when we iterate over the elements. These kind of structures, in general, are what we call  **LIFO** - <b>L</b>ast <b>I</b>n, <b>F</b>irst <b>O</b>ut. In other words, the first element we enter will be the last element we get when we iterate over it. These classes where you have a bunch of elements are called **collections**
 
-[^camelCase]: when we write identifiers, we need the camelCase notation. In this notation, every identifier starts with a lower case character, and is preceded by lowercase characters until we hit a space - then, we remove the space and the following word starts with a upper case character. So, for example, if we want an identifier to be named "ammount of money", in camelCase notation we write it as `ammountOfMoney`. It is possible to use numbers in camelCase, but not as the first character. So, for instance, `sumWith2` is a valid identifier, but `2ForOne` is not. camelCase is a convention used in Scala, Javascript, Java, C# and other languages. 
+There are other kind of collections: for example, the `Queue` is a kind of <b>F</b>irst <b>I</b>n, <b>F</b>irst <b>O</b>ut (or **FIFO** for short). On the mutable side, we have the `Stack` for a **LIFO** collection, and a `Buffer` for a **FIFO** collection. Most of the time, we'll use the immutable classes, but it is interesting to know that we have mutable collection for times when we need.
 
-[^answer1]: The first code doesn't work because we're passing a decimal to a function that expects an integer. Scala doesn't knows what to do with the decimal number - should it round up? Round down? Discard the decimal part altogether? As for the second function, it'll work because we're passing an integer to a function that expects a decimal - converting from integer to decimal is a simple matter of adding a decimal part to it. To understand better, try to imagine that if I want a decimal, and passes it the number `2`, I can convert it to a decimal simply: `2.0` is a valid decimal. But, if I want an integer, and get a `2.4`, I don't have a sane way to automatically convert it to an integer.
+### Operations on collections
 
-[^application]: We call "function application" when we have a function defined, and we call it with a number of parameters. It is **very** important to understand that *function application* and *function calling* are **exactly** the same thing, but we call it "application" because it is a more mathematical-correct term, and because we'll see it in action how the computer uses the parameters that we pass to the function to compute, in fact, a result.
-
-[^bit]: Remember, a bit can only store two single values: `0` and `1`. So, in this case, `1 + 1` is `10`, `10 + 1` is `11`, `11 + 1` is `100`, and so on.
-
-[^UpperCamelCase]: In most programming languages, when defining a type (creating a new class, for instance), we use CamelCase too, but in this case the first character is in upper case. So, if we need to create a class to represent printers, we could name a class for inkjet printers as `InkjetPrinter`, for instance.
-
-[^caseClassProblem]: Here we see a **very** interesting thing: sometimes, programming languages' creators make some decisions that not all people agree. This is normal, and it's the work of programmers to know, and circunvent, programming languages' limitations.
-
-[^reasonForNothing]: We'll see later how to work with `Nothing`. For now, let's just say it is not as simple as it should: for an example, in `Empty` object we'll have to define `add` method; it's signature will become `add(element: Nothing): List[Nothing]` after we substitute the type parameter... but we cannot define an object as a subclass of `Nothing`, neither we can create an instance of `Nothing`, so in effect our object will be useless.
+Now, we're going to see, finally, methods on classes that already come with Scala. For now, 
