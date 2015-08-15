@@ -1,21 +1,34 @@
-(def empty-board (fn []
-  (let
-    [row, [" " " " " "]]
-    [row row row])))
+(defn != [a b] (not (= a b)))
 
-(def won (fn [board]
+(defn matches-line [row]
+  (and (apply = row) (!= (first row) " ")))
+
+(defn same-horiz [board]
+  (let
+    [match (first (filter matches-line board))]
+    (= match nil) nil (first match)))
+
+(defn same-vert [board]
+  (same-horiz (apply map vector board)))
+
+(defn same-diag1 [board]
+  (let [f (first (first board))]
+    (if
+      (and (= f (second (second board)) (last (last board))) (!= f " "))
+      f
+      nil)))
+
+(defn same-diag2 [board]
+  (same-diag1 (apply map vector (reverse board))))
+
+(defn who-won? [board]
   (or
     (same-horiz board)
     (same-vert board)
     (same-diag1 board)
-    (same-diag2 board))))
+    (same-diag2 board)))
 
-(def same-horiz (fn [board]
-  (first
-    (filter
-      (fn [row]
-        (and (= (count (set row)) 1) (not (= (first row) " "))))
-      board))))
-
-
-(nth (empty-board) 1)
+(def empty-board
+  (let
+    [row, [" " " " " "]]
+    [row row row]))
