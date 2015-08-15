@@ -16,7 +16,7 @@
 (defn invalid-movement [board player]
   (do
     (println "Invalid move. Movements must be like 'A1', 'B2', etc.\n")
-    (play board player)))
+    #(play board player)))
 
 (defn valid-movement [board player colMatch rowMatch]
   (do
@@ -24,7 +24,7 @@
     (def row (- (Integer/parseInt rowMatch) 1))
     (def new-player (if (= player "X") "O" "X"))
     (def new-board (assoc board row (assoc (nth board row) col player)))
-    (play new-board new-player)))
+    #(play new-board new-player)))
 
 (defn treat-movement [board player]
   (let [[_ colMatch rowMatch]
@@ -52,4 +52,4 @@
       (tie)
       (next-turn board player)))))
 
-(play empty-board "X")
+(trampoline play empty-board "X")
