@@ -28,6 +28,11 @@
     (same-diag1 board)
     (same-diag2 board)))
 
+(defn no-more-movements? [board]
+  (let
+    [blank-space? (fn [row] (some (partial = " ") row))]
+    (not (some blank-space? board))))
+
 (def empty-board
   (let
     [row, [" " " " " "]]

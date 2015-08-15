@@ -38,8 +38,9 @@
   (flush)
   (treat-movement board player)))
 
-(defn won-game [victorious] (do
-  (println "Player" victorious "won!\n")))
+(defn won-game [v] (println "Player" v "won!\n"))
+
+(defn tie [] (println "No more movements - game ended in a tie\n"))
 
 (defn play [board player] (do
   (print-board board)
@@ -47,6 +48,8 @@
 
   (if victorious
     (won-game victorious)
-    (next-turn board player))))
+    (if (no-more-movements? board)
+      (tie)
+      (next-turn board player)))))
 
 (play empty-board "X")
