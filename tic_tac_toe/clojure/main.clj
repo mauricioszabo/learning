@@ -1,4 +1,5 @@
-(load "board")
+(ns tictactoe.main
+    (:require [tictactoe.board :refer :all]))
 
 (defn print-board [board]
   (do
@@ -19,11 +20,10 @@
     #(play board player)))
 
 (defn valid-movement [board player colMatch rowMatch]
-  (do
-    (def col (.indexOf ["A" "B" "C"] colMatch))
-    (def row (- (Integer/parseInt rowMatch) 1))
-    (def new-player (if (= player "X") "O" "X"))
-    (def new-board (assoc board row (assoc (nth board row) col player)))
+  (let [col (.indexOf ["A" "B" "C"] colMatch)
+        row (- (Integer/parseInt rowMatch) 1)
+        new-player (case player "X" "O" "X")
+        new-board (assoc-in board [row col] player)]
     #(play new-board new-player)))
 
 (defn treat-movement [board player]
@@ -33,23 +33,21 @@
       (valid-movement board player colMatch rowMatch)
       (invalid-movement board player))))
 
-(defn next-turn [board player] (do
+(defn next-turn [board player]
   (print "Player" player ", your move: ")
   (flush)
-  (treat-movement board player)))
+  (treat-movement board player))
 
 (defn won-game [v] (println "Player" v "won!\n"))
 
-(defn tie [] (println "No more movements - game ended in a tie\n"))
+(def tie #(println "No more movements - game ended in a tie\n"))
 
-(defn play [board player] (do
+(defn play [board player]
   (print-board board)
-  (def victorious (who-won? board))
+  (let [victorious (who-won? board)]
+    (cond
+      victorious (won-game victorious)
+      (no-more-movements? board) (tie)
+      :else (next-turn board player))))
 
-  (if victorious
-    (won-game victorious)
-    (if (no-more-movements? board)
-      (tie)
-      (next-turn board player)))))
-
-(trampoline play empty-board "X")
+(defn -main [& args] (trampoline play empty-board "X"))
