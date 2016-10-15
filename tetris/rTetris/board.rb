@@ -1,8 +1,8 @@
-require 'piece.rb'
+require_relative 'piece.rb'
 
 class Board
   attr_accessor :tabuleiro, :peca, :next
-	
+
   def nova_peca
     @next = Piece.new
   end
@@ -11,39 +11,39 @@ class Board
     @peca = @next
     nova_peca
   end
-  
+
   def esquerda
     @peca.x -= 1
     @peca.x += 1 if colide?
   end
-  
+
   def direita
     @peca.x += 1
     @peca.x -= 1 if colide?
   end
-  
+
   def baixo
     if @mr
       @peca.y += 1
     else
       @peca.y += 0.1
     end
-    		
+
     colidiu = colide?
-		
+
     if colidiu or @peca.y + @peca.matriz.length > 21
       @peca.y = 21 - self.peca.matriz.length if @peca.y + @peca.matriz.length > 21
       fixar
     end
   end
-	
+
   def mais_rapido(baixo)
     @mr = baixo
   end
-	
+
   def colide?
     selfy = @peca.y.to_i
-		
+
     @peca.matriz[0].length.times do |x|
       @peca.matriz.length.times do |y|
         begin
@@ -57,7 +57,7 @@ class Board
     end
     return false
   end
-	
+
   #Trava a peça no tabuleiro
   def fixar
     @peca.y = @peca.y.to_i - 1
@@ -70,15 +70,15 @@ class Board
         end
       end
     end
-      	
+
     limpa
     proximo
   end
-		
+
   #Rotaciona a peça.
   def rotacionar
     colunas = @peca.matriz[0].length
-      	
+
     #Acertar as linhas e colunas:
     antx = self.peca.x
 
@@ -93,7 +93,7 @@ class Board
 
   def limpa
     20.times do |y|
-      if @tabuleiro[y] == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]:
+      if @tabuleiro[y] == [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         @tabuleiro.delete_at y
         @tabuleiro = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] + @tabuleiro
       end

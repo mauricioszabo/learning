@@ -2,7 +2,7 @@
 
 require "rubygems"
 require 'sdl'
-require 'board.rb'
+require_relative 'board.rb'
 
 class Principal
   def initialize
