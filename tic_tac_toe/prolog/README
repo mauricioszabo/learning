@@ -2,8 +2,8 @@ Prolog
 
 Prolog é uma linguagem bem diferente. Primeiro, porque não há exatamente "comandos", 
 tudo é feito usando-se inferência lógica. Não há, por exemplo, um comando que 
-concatenalistas - há um comando que, dadas duas lista, vê se elas concatenadas são 
-iguais àterceira lista. Aí, podemos deixar uma variável no terceiro parâmetro, e 
+concatena listas - há um comando que, dadas duas lista, vê se elas concatenadas são 
+iguais à terceira lista. Aí, podemos deixar uma variável no terceiro parâmetro, e 
 prolog se encarrega de preenchê-la com a lista concatenada.
 
 Segundo, porque ela não é determinística-um comando pode trazer um ou mais resultados.
