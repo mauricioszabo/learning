@@ -18,7 +18,7 @@ viewBoard =
   let board = newBoard [[Empty, Empty, Empty],
                         [X,     Empty, Empty],
                         [Empty, O,     Empty]]
-      expected = "        A  B  C\n" ++
+      expected = "     A   B   C\n" ++
                  "  1    |   |  \n" ++
                  "    ---+---+---\n" ++
                  "  2  X |   |  \n" ++

@@ -12,7 +12,7 @@ showBoard board =
   let rowsAsList = Vector.map Vector.toList board
       boardAsList = Vector.toList rowsAsList
       rows = map showRow $ zip [1,2..] boardAsList
-      in "        A  B  C\n" ++ intercalate "\n    ---+---+---\n" rows
+      in "     A   B   C\n" ++ intercalate "\n    ---+---+---\n" rows
   where
     showRow (idx, row) = "  " ++ (show idx) ++ "  " ++ (intercalate " | " $ map toString row)
     toString Empty = " "
