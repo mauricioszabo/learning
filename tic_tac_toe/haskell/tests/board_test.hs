@@ -19,11 +19,11 @@ viewBoard =
                         [X,     Empty, Empty],
                         [Empty, O,     Empty]]
       expected = "        A  B  C\n" ++
-                 "  1    |   | \n" ++
+                 "  1    |   |  \n" ++
                  "    ---+---+---\n" ++
-                 "  2  X |   | \n" ++
+                 "  2  X |   |  \n" ++
                  "    ---+---+---\n" ++
-                 "  3    | O | "
+                 "  3    | O |  "
   in TestCase $ assertEqual "can show" expected $ showBoard board
 
 tests = TestList [TestLabel "Board can be updated" boardUpdate,

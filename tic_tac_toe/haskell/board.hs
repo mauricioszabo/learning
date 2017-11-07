@@ -1,5 +1,6 @@
 module Board where
-import Data.Vector as Vector
+import Data.Vector (Vector, (!), (//))
+import qualified Data.Vector as Vector
 import Data.List as List
 type Board = Vector (Vector Mark)
 
@@ -10,12 +11,10 @@ empty = Vector.replicate 3 $ Vector.replicate 3 Empty
 showBoard board =
   let rowsAsList = Vector.map Vector.toList board
       boardAsList = Vector.toList rowsAsList
-      rows = List.map showRow boardAsList
-      -- full
-      -- withHeader = "
-      in List.intercalate "\n---+---+---\n" rows
+      rows = map showRow $ zip [1,2..] boardAsList
+      in "        A  B  C\n" ++ intercalate "\n    ---+---+---\n" rows
   where
-    showRow row = ' ' : ' ' : (List.intercalate " | " $ List.map toString row)
+    showRow (idx, row) = "  " ++ (show idx) ++ "  " ++ (intercalate " | " $ map toString row)
     toString Empty = " "
     toString player = show player
 
