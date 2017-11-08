@@ -18,7 +18,22 @@ showBoard board =
     toString Empty = " "
     toString player = show player
 
+get :: Board -> (Int, Int) -> Mark
+get board (row, col) = board ! row ! col
+
 update :: Board -> (Int, Int) -> Mark -> Board
 update board (row, col) mark =
   let inner = board ! row // [(col, mark)]
     in board // [(row, inner)]
+
+printBoard board = do
+  putStrLn "     A   B   C"
+  putStrLn $ "  1  " ++ (intercalate " | " $ nthRow 0)
+  putStrLn "    ---+---+---"
+  putStrLn $ "  2  " ++ (intercalate " | " $ nthRow 1)
+  putStrLn "    ---+---+---"
+  putStrLn $ "  3  " ++ (intercalate " | " $ nthRow 2)
+  where
+    nthRow n = map toString $ Vector.toList (board ! n)
+    toString Empty = " "
+    toString player = show player
