@@ -1,6 +1,7 @@
 module Board where
 import Data.Vector (Vector, (!), (//))
 import qualified Data.Vector as Vector
+import qualified Data.Maybe as Maybe
 import Data.List as List
 type Board = Vector (Vector Mark)
 
@@ -26,6 +27,17 @@ update board (row, col) mark =
   let inner = board ! row // [(col, mark)]
     in board // [(row, inner)]
 
+-- whoWon :: Board -> Maybe Mark
+whoWon board =
+  let trans =  transpose $ vectorAsList board
+      res = [find playerWon board,
+             find playerWon trans]
+  in Maybe.listToMaybe $ Maybe.catMaybes res
+  -- where
+-- playerWon :: (Foldable Mark) -> Bool
+playerWon row = (all (== X) row) || (all (== O) row)
+
+
 printBoard board = do
   putStrLn "     A   B   C"
   putStrLn $ "  1  " ++ (intercalate " | " $ nthRow 0)
@@ -37,3 +49,5 @@ printBoard board = do
     nthRow n = map toString $ Vector.toList (board ! n)
     toString Empty = " "
     toString player = show player
+
+vectorAsList board = Vector.toList $ Vector.map Vector.toList board
