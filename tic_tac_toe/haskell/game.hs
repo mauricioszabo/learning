@@ -7,23 +7,28 @@ main = gameTurn Board.empty X
 
 gameTurn board player = do
   printBoard board
-  putStr $ "\nPlayer " ++ (show player) ++ ", your move? "
-  move <- lazyGetLine
-  case step move of
+  step <- nextStep
+  case step of
     (Draw, _, _) -> putStrLn "\nGame ended in a draw"
     (XWon, _, _) -> putStrLn "\nX won!"
     (OWon, _, _) -> putStrLn "\nO won!"
     (_, Nothing, _) -> wrongMove
     (_, _, Nothing) -> alreadyMarked
     (_, _, Just newBoard) -> gameTurn newBoard otherPlayer
-  return ()
 
   where
-    lazyGetLine = fmap (takeWhile (/= '\n')) getContents
-    step move =
+    nextStep :: IO (GameStatus, Maybe (Int, Int), Maybe Board)
+    nextStep =
+      case gameStatus board of
+        GameIsOn -> do
+                      putStr $ "\nPlayer " ++ (show player) ++ ", your move? "
+                      fmap treatInput getLine
+        other -> return (other, Nothing, Nothing)
+
+    treatInput move =
       let movement = treatMovement move
           newBoard = updatedBoard movement
-      in (gameStatus board, movement, newBoard)
+      in (GameIsOn, movement, newBoard)
 
     updatedBoard (Just move) = update board move player
     otherPlayer = if player == X then O else X
