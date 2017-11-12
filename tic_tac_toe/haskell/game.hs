@@ -8,17 +8,22 @@ main = gameTurn Board.empty X
 gameTurn board player = do
   printBoard board
   putStr $ "\nPlayer " ++ (show player) ++ ", your move? "
-  move <- getLine
-  case movementAndBoard move of
-    (Nothing, _) -> wrongMove
-    (_, Nothing) -> alreadyMarked
-    (_, Just newBoard) -> gameTurn newBoard otherPlayer
+  move <- lazyGetLine
+  case step move of
+    (Draw, _, _) -> putStrLn "\nGame ended in a draw"
+    (XWon, _, _) -> putStrLn "\nX won!"
+    (OWon, _, _) -> putStrLn "\nO won!"
+    (_, Nothing, _) -> wrongMove
+    (_, _, Nothing) -> alreadyMarked
+    (_, _, Just newBoard) -> gameTurn newBoard otherPlayer
+  return ()
 
   where
-    movementAndBoard move =
+    lazyGetLine = fmap (takeWhile (/= '\n')) getContents
+    step move =
       let movement = treatMovement move
           newBoard = updatedBoard movement
-      in (movement, newBoard)
+      in (gameStatus board, movement, newBoard)
 
     updatedBoard (Just move) = update board move player
     otherPlayer = if player == X then O else X
@@ -35,7 +40,7 @@ treatMovement move =
       match = matchRegex regex move
       in fmap makePair match
   where
-    makePair [row, col] = (treatRow row, treatCol col)
-    treatRow row = (ord $ row !! 0) - (ord 'A')
-    treatCol :: String -> Int
-    treatCol col = (read col) - 1
+    makePair [col, row] = (treatRow row, treatCol col)
+    treatCol row = (ord $ row !! 0) - (ord 'A')
+    treatRow :: String -> Int
+    treatRow col = (read col) - 1
