@@ -41,7 +41,7 @@ gameTurn board player = do
 
 treatMovement :: String -> Maybe (Int, Int)
 treatMovement move =
-  let regex = (mkRegex "([ABC])([123])")
+  let regex = (mkRegex "^([ABC])([123])$")
       match = matchRegex regex move
       in fmap makePair match
   where
