@@ -9,19 +9,6 @@ data GameStatus = XWon | OWon | GameIsOn | Draw deriving (Eq, Show)
 
 empty = replicate 3 $ replicate 3 Empty
 
--- showBoard board =
---   let rowsAsList = Vector.map Vector.toList board
---       boardAsList = Vector.toList rowsAsList
---       rows = map showRow $ zip [1,2..] boardAsList
---       in "     A   B   C\n" ++ intercalate "\n    ---+---+---\n" rows
---   where
---     showRow (idx, row) = "  " ++ (show idx) ++ "  " ++ (intercalate " | " $ map toString row)
---     toString Empty = " "
---     toString player = show player
-
--- get :: Board -> (Int, Int) -> Mark
--- get board (row, col) = board !! row !! col
---
 update :: Board -> (Int, Int) -> Mark -> Maybe Board
 update board (row, col) mark =
   case board !! row !! col of
@@ -48,10 +35,10 @@ printBoard board = do
 gameStatus :: Board -> GameStatus
 gameStatus board =
   case (whoWon, isDraw) of
-                        (Just X, _) -> XWon
-                        (Just O, _) -> OWon
-                        (_, True) -> Draw
-                        (_, False) -> GameIsOn
+    (Just X, _) -> XWon
+    (Just O, _) -> OWon
+    (_, True) -> Draw
+    (_, False) -> GameIsOn
   where
     whoWon :: Maybe Mark
     whoWon = (findSamePlayers board) `orElse`
