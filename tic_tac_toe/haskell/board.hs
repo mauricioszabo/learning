@@ -16,7 +16,6 @@ update board (row, col) mark =
     _ -> Nothing
   where
     inner = updateOne (board !! row) col mark
-    updateOne :: [a] -> Int -> a -> [a]
     updateOne list pos element =
       take pos list ++ [element] ++ drop (pos + 1) list
 
@@ -40,7 +39,6 @@ gameStatus board =
     (_, True) -> Draw
     (_, False) -> GameIsOn
   where
-    whoWon :: Maybe Mark
     whoWon = (findSamePlayers board) `orElse`
              (findSamePlayers $ transpose board) `orElse`
              (findSamePlayers $ diagonals)

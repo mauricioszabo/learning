@@ -17,7 +17,6 @@ gameTurn board player = do
     (_, _, Just newBoard) -> gameTurn newBoard otherPlayer
 
   where
-    nextStep :: IO (GameStatus, Maybe (Int, Int), Maybe Board)
     nextStep =
       case gameStatus board of
         GameIsOn -> do
