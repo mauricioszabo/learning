@@ -22,11 +22,13 @@ empty = replicate 3 $ replicate 3 Empty
 -- get :: Board -> (Int, Int) -> Mark
 -- get board (row, col) = board !! row !! col
 --
-update :: Board -> (Int, Int) -> Mark -> Board
+update :: Board -> (Int, Int) -> Mark -> Maybe Board
 update board (row, col) mark =
-  let inner = updateOne (board !! row) col mark
-    in updateOne board row inner
+  case board !! row !! col of
+    Empty -> Just $ updateOne board row inner
+    _ -> Nothing
   where
+    inner = updateOne (board !! row) col mark
     updateOne :: [a] -> Int -> a -> [a]
     updateOne list pos element =
       take pos list ++ [element] ++ drop (pos + 1) list

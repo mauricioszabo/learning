@@ -9,7 +9,14 @@ boardUpdate =
                        [X,     Empty, Empty],
                        [Empty, Empty, Empty]]
       updatedBoard = Board.update Board.empty (1, 0) X
-      in TestCase $ assertEqual "can be updated" expectedBoard updatedBoard
+      in TestCase $ assertEqual "can be updated" (Just expectedBoard) updatedBoard
+
+boardUpdateError =
+  let board = [[Empty, Empty, Empty],
+               [X,     Empty, Empty],
+               [Empty, Empty, Empty]]
+      updatedBoard = Board.update Board.empty (1, 0) O
+      in TestCase $ assertEqual "can't be updated" Nothing updatedBoard
 
 -- viewBoard =
 --   let board = newBoard [[Empty, Empty, Empty],
@@ -39,6 +46,7 @@ aDraw =
       in TestCase $ assertEqual "A draw" Draw $ gameStatus board
 
 tests = TestList [TestLabel "Board can be updated" boardUpdate,
+                  TestLabel "Board can be updated" boardUpdateError,
                   TestLabel "Game status" gameIsOn,
                   TestLabel "Game status" xWon,
                   TestLabel "Game status" oWonDiagonally,
