@@ -1,0 +1,5 @@
+{:lein true
+ :builds {:browser {:target :browser
+                    :output-dir "resources/public/js"
+                    :asset-path "js"
+                    :modules {:index {:init-fn tic-tac-toe.frontend/main}}}}}
