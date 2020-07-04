@@ -6,13 +6,18 @@
 (defn- respond-hello [request]
   {:status 200 :body "Hello, world!"})
 
+(defn- index [req]
+  {:status 301 :headers {"Location" "/index.html"}})
+
 (def routes
   (route/expand-routes
-   #{["/greet" :get respond-hello :route-name :greet]}))
+   #{["/" :get index :route-name :index]
+     ["/greet" :get respond-hello :route-name :greet]}))
 
 (defn create-dev-server []
   (http/create-server
-   {::http/routes routes
+   {:env :dev
+    ::http/routes #(deref #'routes)
     ::http/resource-path "public"
     ::http/secure-headers {:content-security-policy-settings ""}
     ::http/type :jetty
