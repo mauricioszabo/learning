@@ -11,16 +11,26 @@
 (def ^:private h-align {:display "flex"})
 (def ^:private v-align {:display "flex" :flex-direction "column"})
 
-(defn- board-row [row idx]
-  [:div {:key idx :style h-align}
-   (map (fn [idx elem] [:div {:key idx :style square} elem])
+(defonce state (r/atom {:board [["" "" ""] ["" "" ""] ["" "" ""]]
+                        :current-player "X"}))
+(defn- mark-board [row col]
+  (let [curr (:current-player @state)]
+    (swap! state #(-> %
+                      (assoc-in [:board row col] curr)
+                      (assoc :current-player (if (= "X" curr) "O" "X"))))))
+
+(defn- board-row [row row-idx]
+  [:div {:key row-idx :style h-align}
+   (map (fn [idx elem] [:div {:key idx
+                              :style square
+                              :on-click (fn [_] (mark-board row-idx idx))}
+                        elem])
         (range) row)])
 
-(defonce board (r/atom [["" "" ""] ["" "" ""] ["" "" ""]]))
 (defn- board-elem []
   [:div
    (map (fn [row idx] (board-row row idx))
-        @board (range))])
+        (:board @state) (range))])
 
 (defn ^:dev/after-load main []
   (r-dom/render [board-elem] (. js/document querySelector "#app")))
