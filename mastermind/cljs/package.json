@@ -1,0 +1,6 @@
+{
+  "name": "Mastermind",
+  "dependencies": {
+    "shadow-cljs": "^2.10.14"
+  }
+}

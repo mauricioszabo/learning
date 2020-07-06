@@ -1,0 +1,10 @@
+;; shadow-cljs configuration
+{:source-paths ["src"]
+
+ :dependencies [[reagent "0.10.0"]]
+
+ :dev-http {3000 {:root "public"}}
+ :builds {:browser {:target :browser
+                    :output-dir "public/js"
+                    :asset-path "js"
+                    :modules {:index {:init-fn mastermind.core/main}}}}}
