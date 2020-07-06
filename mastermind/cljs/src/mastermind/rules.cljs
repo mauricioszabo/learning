@@ -14,9 +14,9 @@
   (let [results (map (fn [color guess] (when-not (= color guess) [color guess]))
                      colors guess)
         colors-f (frequencies (map first results))
-        guesses (->> results (map second) (remove nil?))]
-    {:white (->> guesses
-                 (map #(get colors-f % 0))
+        guess-f (frequencies (map second results))]
+    {:white (->> (dissoc guess-f nil)
+                 (map (fn [[color freq]] (min freq (get colors-f color 0))))
                  (reduce +))
      :black (get colors-f nil 0)}))
 
@@ -33,5 +33,5 @@
 
   (t/testing "guess something on the right place, and some on wrong"
     (t/is (= {:white 2 :black 1}
-             (compare-guess [:red :green :blue :red]
+             (compare-guess [:red :blue :red :red]
                             [:red :red :black :blue])))))
