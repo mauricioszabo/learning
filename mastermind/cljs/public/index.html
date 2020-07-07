@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
     <title>Mastermind in Reagent</title>
   </head>
@@ -9,8 +10,35 @@
   <style media="screen">
     body {
       font-family: "Roboto";
+      background-color: #BBB;
+    }
+
+    .circle {
+      height: 2em;
+      width: 2em;
+      background-color: #000;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0.2em;
+    }
+
+    .square {
+      height: 4em;
+      width: 2em;
+      display: inline-block;
+      margin: 0.2em;
+    }
+
+    div.rows {
+      display: flex;
+      flex-direction: column;
+    }
+    div.cols {
+      display: flex;
+      flex-direction: row;
     }
   </style>
+
   <body>
     <div id="app"></div>
     <script type="text/javascript" src="js/index.js"></script>
