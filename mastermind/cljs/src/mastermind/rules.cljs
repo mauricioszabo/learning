@@ -40,5 +40,4 @@
   (let [colors (shuffle-colors)]
     {:colors colors
      :old-guesses []
-     :win? nil
      :current-guess []}))
