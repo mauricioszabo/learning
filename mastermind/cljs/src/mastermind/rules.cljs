@@ -35,3 +35,10 @@
     (t/is (= {:white 2 :black 1}
              (compare-guess [:red :blue :red :red]
                             [:red :red :gray :blue])))))
+
+(defn new-game-state []
+  (let [colors (shuffle-colors)]
+    {:colors colors
+     :old-guesses []
+     :win? nil
+     :current-guess []}))

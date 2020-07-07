@@ -36,7 +36,9 @@
                           (swap! state update :current-guess
                                  #(cond-> % (< (count %) 4) (conj color))))}])
 
-(declare new-game!)
+(defn- new-game! []
+  (reset! state (rules/new-game-state)))
+
 (defn- send-guess! [state]
   (let [current-guess (:current-guess @state)
         colors (:colors @state)
@@ -80,14 +82,6 @@
 
 (defn ^:dev/after-load render []
   (r-dom/render [index state] (. js/document querySelector "#app")))
-
-(defn- new-game! []
-  (let [colors (rules/shuffle-colors)]
-    (swap! state assoc
-           :colors colors
-           :old-guesses []
-           :win? nil
-           :current-guess [])))
 
 (defn main []
   (new-game!)
