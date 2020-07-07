@@ -44,11 +44,13 @@
     (when (and (= 4 (count current-guess)))
       (swap! state
              #(-> %
-                  (assoc :current-guess [] :win? (= current-guess colors))
+                  (assoc :current-guess [])
                   (update :old-guesses conj {:result result :guess current-guess}))))))
 
 (defn- index [state]
-  (let [{:keys [old-guesses colors win?]} @state]
+  (let [{:keys [old-guesses colors]} @state
+        win? (-> old-guesses peek :result :black (= 4))
+        lost? (= 10 (count old-guesses))]
     [:> Container {:style {:margin-top "2em" :margin-bottom "2em"}}
      [:> Paper
       [:> Container {:style {:display "flex" :flex-direction "column" :align-items "center"}}
@@ -69,7 +71,7 @@
         (map #(buttons state %) (keys get-color))]
        (cond
          win? [:h2 "You have won the game!"]
-         (= 10 (count old-guesses)) [:h2 "You have LOST the game! Looser!!!"]
+         lost? [:h2 "You have LOST the game! Looser!!!"]
          :else [:> ButtonGroup {:style {:margin-top "1em" :margin-bottom "1em"}}
                 [:> Button {:on-click (fn [_] (send-guess! state))}
                  "Guess"]
